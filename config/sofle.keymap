@@ -7,7 +7,8 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include "C:/Users/EUA/zmk-config2/zmk-nodefree-config/zmk-nodefree-config/helper.h"
+#include "C:/Users/EUA/zmk-config2/zmk-nodefree-config/helper.h"
+
 
 ZMK_UNICODE_SINGLE(menor, N0, N0, N3, C)  
 ZMK_UNICODE_SINGLE(mayor, N0, N0, N3, E)
