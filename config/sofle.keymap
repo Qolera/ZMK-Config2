@@ -12,7 +12,7 @@
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
 
 // euro sign
-ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)  // €
+ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
 ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
 
 
