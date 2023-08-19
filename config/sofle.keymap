@@ -13,7 +13,7 @@
 
 // euro sign
 ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)  // €
-ZMK_UNICODE_SINGLE(ene, N0, N0, D, N1)
+ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
 ZMK_UNICODE_SINGLE(mayor, N0, N0, N3, E)
 
 
