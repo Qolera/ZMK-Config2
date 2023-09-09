@@ -36,7 +36,7 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
                  &kp LGUI &kp LALT &kp LCTRL &mo 1  &kp SPACE    &kp RET    &mo 2  &kp RALT  &kp RCTRL &kp RGUI
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_DN C_VOL_UP>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp &kp LEFT &kp RIGHT>;
         };
 
         lower_layer {
