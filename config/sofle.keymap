@@ -61,15 +61,15 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
         raise_layer {
 // ------------------------------------------------------------------------------------------------------------
 // |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
-// |     | INS  | PSCR | GUI   |       |      |                | PGUP |   7  |   8   |   9  |   +   |       |
-// |     | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   4  |   5   |   6  |   -   |   '   |
+// |     | INS  | PSCR | GUI   |       |      |                | PGUP |      |       |      |       |       |
+// |     | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   5  |   6   |   7  |   8   |   9   |
 // |     | UNDO | CUT  | COPY  | PASTE |      |      |  |      |   0  |   1  |   2   |   3  |   4   |       |
 //              |      |       |       |      |      |  |      |      |      |       |      |
             bindings = <
 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans    &trans    &trans   &trans    &trans  &trans
-&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                   &kp PG_UP &kp N7    &kp N8   &kp N9    &kp KP_PLUS  &trans
-&trans     &kp RA(2)     &kp LCTRL    &kp LSHFT    &trans       &kp CLCK                &kp PG_DN &kp N4    &kp N5   &kp N6    &kp LS(MINUS) &kp SQT
-&trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE  &trans  &trans   &trans  &kp N0    &kp N1    &kp N2   &kp N3    &trans  &trans
+&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                   &kp PG_UP &trans    &trans   &trans    &trans  &trans
+&trans     &kp RA(2)     &kp LCTRL    &kp LSHFT    &trans       &kp CLCK                &kp PG_DN &kp N5    &kp N6   &kp N7    &kp N8  &kp N9
+&trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE  &trans  &trans   &trans  &kp N0    &kp N1    &kp N2   &kp N3    &kp N4  &trans
                         &trans       &trans       &trans       &trans  &trans   &trans  &trans    &trans    &trans   &trans
             >;
 
