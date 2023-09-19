@@ -23,13 +23,13 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
  
         default_layer {
 // ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1! |  2@ |  3#  |  4$  |  5%  |                   |  6^  |  7&   |  8*   |  9(  |   0)  | BKSPC |
+// |  ESC  |  1! |  2@ |  3#  |  4$  |  5%  |                   |  6^  |  7&   |  8*   |  9(  |   0)  |       |
 // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
 // | SHIFT |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   Ñ   |   ’”  |
 // | CTRL  |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  | PLAY  |  N   |  M    |  ,<   |  .>  |   -_  |   /?  |
 //               | GUI | ALT  | CTRL | LOWER|  SPACE |  | ENTER | RAISE|  ALT  | CTRL  | GUI  |
             bindings = <
-&kp ESC   &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                         &kp N6 &kp N7    &kp N8    &kp N9   &kp N0    &kp BSPC
+&kp ESC   &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                         &kp N6 &kp N7    &kp N8    &kp N9   &kp N0    &trans
 &kp TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                          &kp Y  &kp U     &kp I     &kp O    &kp P     &kp BSPC
 &sk LSHFT &kp A  &kp S    &kp D    &kp F     &kp G                          &kp H  &kp J     &kp K     &kp L    &ene      &kp RA(SQT)
 &kp LCTRL &kp Z  &kp X    &kp C    &kp V     &kp B  &kp C_MUTE   &kp C_PLAY &kp N  &kp M     &kp COMMA &kp DOT  &kp MINUS &kp SLASH
@@ -61,15 +61,15 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
         raise_layer {
 // ------------------------------------------------------------------------------------------------------------
 // |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
-// |     | INS  | PSCR | GUI   |       |      |                | PGUP |   7  |   8   |   9  |   0   |       |
+// |     | INS  | PSCR | GUI   |       |      |                | PGUP |   7  |   8   |   9  |   +   |       |
 // |     | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   4  |   5   |   6  |   -   |   '   |
-// |     | UNDO | CUT  | COPY  | PASTE |      |      |  |      |      |   1  |   2   |   3  |       |       |
+// |     | UNDO | CUT  | COPY  | PASTE |      |      |  |      |   0  |   1  |   2   |   3  |   4   |       |
 //              |      |       |       |      |      |  |      |      |      |       |      |
             bindings = <
 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans    &trans    &trans   &trans    &trans  &trans
-&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                   &kp PG_UP &kp N7    &kp N8   &kp N9    &kp N0  &trans
+&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                   &kp PG_UP &kp N7    &kp N8   &kp N9    &kp KP_PLUS  &trans
 &trans     &kp RA(2)     &kp LCTRL    &kp LSHFT    &trans       &kp CLCK                &kp PG_DN &kp N4    &kp N5   &kp N6    &kp LS(MINUS) &kp SQT
-&trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE  &trans  &trans   &trans  &trans    &kp N1    &kp N2   &kp N3    &trans  &trans
+&trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE  &trans  &trans   &trans  &kp N0    &kp N1    &kp N2   &kp N3    &trans  &trans
                         &trans       &trans       &trans       &trans  &trans   &trans  &trans    &trans    &trans   &trans
             >;
 
