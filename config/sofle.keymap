@@ -61,19 +61,38 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
         raise_layer {
 // ------------------------------------------------------------------------------------------------------------             
 // |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
-// |     | INS  | PSCR | GUI   |       |      |                | PGUP |      |       |      |       |       |
-// |     | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   5  |   6   |   7  |   '   |   ''  |
-// |     | UNDO | CUT  | COPY  | PASTE |      |      |  |      |   0  |   1  |   2   |   3  |   4   |       |
+// |     | INS  | PSCR | GUI   |       |      |                | PGUP |   7  |   8   |   9  |   0   |       |
+// |     | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   4  |   5   |   6  |   +   |   ''  |
+// |     | UNDO | CUT  | COPY  | PASTE |      |      |  |      |   0  |   1  |   2   |   3  |   -   |       |
 //              |      |       |       |      |      |  |      |      |      |       |      |
             bindings = <
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans    &trans    &trans   &trans    &trans  &trans
-&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                   &kp PG_UP &trans    &trans   &trans    &trans  &trans
-&trans     &kp RA(2)     &kp LCTRL    &kp LSHFT    &trans       &kp CLCK                &kp PG_DN &kp N5    &kp N6   &kp N7    &kp SQT  &kp LS(SQT)
-&trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE  &trans  &trans   &trans  &kp N0    &kp N1    &kp N2   &kp N3    &kp N4  &trans
+&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans    &trans    &trans   &trans  &trans  &trans
+&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                   &kp PG_UP &kp N7    &kp N8   &kp N9  &kp N0  &trans
+&trans     &kp RA(2)     &kp LCTRL    &kp LSHFT    &trans       &kp CLCK                &kp PG_DN &kp N4    &kp N5   &kp N6  &kp KP_PLUS  &kp LS(SQT)
+&trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE  &trans  &trans   &trans  &kp N0    &kp N1    &kp N2   &kp N3  &kp MINUS  &trans
                         &trans       &trans       &trans       &trans  &trans   &trans  &trans    &trans    &trans   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
+
+         mouse_layer {
+       /*.------------------------------------------------.                         .-------------------------------------------------.
+         |WH_LEFT |WH_RIGH|       |OUT_USB|OUT_BLE|OUT_TOG|                         | BRD-  | BRI+  |  SPD- | SPI+  |WH_DOWN| WH_UP   |
+         |--------+-------+-------+-------+-------+-------|                         |-------+-------+-------+-------+-------+---------|
+         |        |CLICK_1|CLICK_2|CLICK_3|BT_PRV | BT_NXT|                         | HUD-  | HUI+  |       |CLICK_1| UP    |CLICK_2  |
+         |--------+-------+-------+-------+-------+-------|                         |-------+-------+-------+-------+-------+---------|
+         |BT_CLR  |BT_0   |BT_1   |BT_2   |BT_3   |BT_4   |                         | SAD-  | SAI+  | RESET | LEFT  | DOWN  | RIGHT   |
+         '---------------------------------------------------------|       |----------------------------------------------------------'
+                                  |EP_OFF  | EP_ON|         EP_TOG |       | EFF-  | EFR+   |   RGB_TOG     |
+                                  '--------------------------------'       '--------------------------------'*/
+         bindings = <
+         SCROLL_LEFT SCROLL_RIGHT XXX         &out OUT_USB &out OUT_BLE  &out OUT_TOG             &rgb_ug RGB_BRD &rgb_ug RGB_BRI &rgb_ug RGB_SPD                    &rgb_ug RGB_SPI SCROLL_DOWN SCROLL_UP
+         SCROLL_LEFT SCROLL_RIGHT XXX         &out OUT_USB &out OUT_BLE  &out OUT_TOG             &rgb_ug RGB_BRD &rgb_ug RGB_BRI &rgb_ug RGB_SPD                    &rgb_ug RGB_SPI SCROLL_DOWN SCROLL_UP
+         XXX         CLICK_LEFT   CLICK_RIGHT CLICK_MIDDLE &bt BT_PRV    &bt BT_NXT               &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_COLOR_HSB(0,0,100)     CLICK_LEFT      MOVE_UP     CLICK_RIGHT
+         &bt BT_CLR  &bt BT(0)    &bt BT(1)   &bt BT(2)    &bt BT(3)     &bt BT(4)                &rgb_ug RGB_SAD &rgb_ug RGB_SAI &rgb_ug RGB_COLOR_HSB(224,100,100) MOVE_LEFT       MOVE_DOWN   MOVE_RIGHT
+                                 &ext_power EP_OFF    &ext_power EP_ON   &ext_power EP_TOG    &rgb_ug RGB_EFF &rgb_ug RGB_EFR &rgb_ug RGB_TOG
+                              >;
+                      };
     };
 };
