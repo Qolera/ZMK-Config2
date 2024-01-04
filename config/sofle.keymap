@@ -50,7 +50,7 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
 //               |     |      |      |      |        |  |       |      |       |       |      |
             bindings = <
 &trans    &kp F1    &kp F2      &kp F3      &kp F4     &kp F5                     &kp F6    &kp F7   &kp F8      &kp F9    &kp F10   &kp F11
-&kp GRAVE &trans    &trans      &euro_sign  &kp K_NEXT &kp K_PREV                     &trans    &trans   &kp UP      &trans    &trans    &kp BSPC
+&kp GRAVE &kp F8    &kp F9      &euro_sign  &kp K_NEXT &kp K_PREV                     &trans    &trans   &kp UP      &trans    &trans    &kp BSPC
 &kp CAPS  &kp LBRC  &kp RBRC    &kp LS(N9)  &kp LS(N0) &kp RBRC                   &trans    &kp LEFT &kp DOWN    &kp RIGHT &trans    &kp PIPE
 &trans    &kp MINUS &kp KP_PLUS &kp LBRC    &kp RBKT   &kp EQUAL  &trans   &trans &trans    &trans   &kp SEMI    &kp COLON &trans    &kp BSLH
                     &trans      &trans      &trans     &trans     &trans   &trans &trans    &trans   &trans      &trans
