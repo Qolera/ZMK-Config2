@@ -44,13 +44,13 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
 // TODO: Some binds are waiting for shifted keycode support.
 // ------------------------------------------------------------------------------------------------------------
 // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-// | `~    |     |     |  €   | prev | next |                   |      |       |  UP   |      |       | BKSPC |
+// | `~    |     |     |  €   | prev | next |                   |      |       |  UP   | HOME |  END  | BKSPC |
 // | CAPS  |  {  |  }  |  (   |  )   |      |                   |      | LEFT  | DOWN  | RIGHT|       |   |   |
 // |       |  -  |  +  |  [   |  ]   |  =   |        |  |       |      |       |  ;    |  :   |       |   \   |
 //               |     |      |      |      |        |  |       |      |       |       |      |
             bindings = <
 &trans    &kp F1    &kp F2      &kp F3      &kp F4     &kp F5                     &kp F6    &kp F7   &kp F8      &kp F9    &kp F10   &kp F11
-&kp GRAVE &kp F8    &kp F9      &euro_sign  &kp K_NEXT &kp K_PREV                     &trans    &trans   &kp UP      &trans    &trans    &kp BSPC
+&kp GRAVE &kp F8    &kp F9      &euro_sign  &kp K_NEXT &kp K_PREV                     &trans    &trans   &kp UP  &kp HOME  &kp END   &kp BSPC
 &kp CAPS  &kp LBRC  &kp RBRC    &kp LS(N9)  &kp LS(N0) &kp RBRC                   &trans    &kp LEFT &kp DOWN    &kp RIGHT &trans    &kp PIPE
 &trans    &kp MINUS &kp KP_PLUS &kp LBRC    &kp RBKT   &kp EQUAL  &trans   &trans &trans    &trans   &kp SEMI    &kp COLON &trans    &kp BSLH
                     &trans      &trans      &trans     &trans     &trans   &trans &trans    &trans   &trans      &trans
@@ -61,7 +61,7 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
 
         raise_layer {
 // ------------------------------------------------------------------------------------------------------------             
-// |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
+// |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                | RGBT | RGB- |  RGB+ |  BR- |  BR+      |       |
 // |     | INS  | PSCR | GRGBT |  RGB- |  RGB+|                | PGUP |   7  |   8   |   9  |   0   |       |
 // |     | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   4  |   5   |   6  |   +   |   ''  |
 // |     | UNDO | CUT  | COPY  | PASTE |      |      |  |      |   0  |   1  |   2   |   3  |   -   |       |
