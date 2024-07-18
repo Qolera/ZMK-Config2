@@ -12,6 +12,12 @@
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
 #include <dt-bindings/zmk/rgb.h>
 
+// LED strip configuration
+&led_strip {
+    chain-length = <29>;  // Set to 1 for testing
+};
+
+
 // euro sign
 ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
 // eñe EÑE sign
