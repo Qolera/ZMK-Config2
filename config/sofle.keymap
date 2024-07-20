@@ -14,7 +14,7 @@
 
 // LED strip configuration
 &led_strip {
-    chain-length = <1>;  // Set to 1 for testing
+    chain-length = <3>;  // Set to 3 for testing
 };
 
 
