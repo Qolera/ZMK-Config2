@@ -67,7 +67,7 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
                     &trans      &trans      &trans     &trans     &trans   &trans  &trans    &trans   &trans      &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp rgb_ug RGB_BRI rgb_ug RGB_BRD &inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&inc_dec_rgb_ug RGB_BRI RGB_BRD &inc_dec_kp PG_DN PG_UP>;
         };
 
         raise_layer {
