@@ -28,6 +28,26 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
 
 
 / {
+    behaviors {
+        rgb_encoder_bri: rgb_encoder_brightness {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+        };
+        
+        rgb_encoder_hue: rgb_encoder_hue {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
+        };
+        
+        rgb_encoder_eff: rgb_encoder_effect {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_EFF>, <&rgb_ug RGB_EFR>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
  
@@ -67,7 +87,7 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
                     &trans      &trans      &trans     &trans     &trans   &trans  &trans    &trans   &trans      &trans
             >;
 
-            sensor-bindings = <&inc_dec_rgb_ug RGB_BRI RGB_BRD &inc_dec_kp PG_DN PG_UP>;
+            sensor-bindings = <&rgb_encoder_bri &rgb_encoder_hue>;
         };
 
         raise_layer {
