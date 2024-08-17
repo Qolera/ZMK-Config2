@@ -115,7 +115,7 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
                           &trans       &trans          &trans          &trans         &trans            &trans           &trans          &kp N0          &trans          &trans
             >;                                                                                                   
 
-            sensor-bindings = <&i rgb_encoder_spd &rgb_encoder_hue>;
+            sensor-bindings = <&rgb_encoder_spd &rgb_encoder_hue>;
         };
 
 
