@@ -57,7 +57,7 @@
     pinctrl-names = "default", "sleep";
 
     pim447_trackball@a {
-        compatible = "pimoroni,pim447_trackball";
+        compatible = "pimoroni,trackball_pim447"
         reg = <0xa>;
         label = "PIM447_TRACKBALL";
     };
