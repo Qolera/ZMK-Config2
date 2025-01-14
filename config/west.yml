@@ -4,10 +4,12 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: mctechnology17
       url-base: https://github.com/mctechnology17
+    - name: cdc-mkb
+      url-base: https://github.com/cdc-mkb
   projects:
     - name: zmk
-      remote: zmkfirmware
-      revision: main
+      remote: cdc-mkb
+      revision: mouse-pim447
       import: app/west.yml
     - name: zmk-nice-oled
       remote: mctechnology17
