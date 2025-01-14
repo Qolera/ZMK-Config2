@@ -1,4 +1,7 @@
 on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
-    uses: cdc-mkb/zmk/.github/workflows/build-user-config.yml@mouse-pim447
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      config_repo: cdc-mkb/zmk
+      config_branch: mouse-pim447
