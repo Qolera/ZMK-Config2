@@ -58,7 +58,7 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
     };
 
     conditional_layers {
-        compatible = "zmk,conditional-layers";
+        compatible = "zmk,conditional-layers"; 
         tri_layer {
             if-layers = <1 2>;
             then-layer = <3>;
@@ -113,13 +113,13 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
 //                                             | BTCLR | BT1  | BT2  | BT3  | BT4  | BT5  |                  | RGBT | RGB- | RGB+ | BR-  |  BR+  | Supr  |
 //                                             |OUT sel| INS  | PSCR | RGBT | RGB- | RGB+ |                  | PGUP |  7   |  8   |  9   |   0   |       |
 //                                             |       | ALT  | CTRL | SHFT |      | CAPS |                  | PGDN |  4   |  5   |  6   |   +   |  '    |
-//                                             |       | UNDO | CUT  | COPY | PASTE|      |RGB_SAD|  |RGB_SAI|  0   |  1   |  2   |  3   |   -   |       |
+//                                             |       | ZSTU | CUT  | COPY | PASTE|      |RGB_SAD|  |RGB_SAI|  0   |  1   |  2   |  3   |   -   |       |
 //                                                            |      |      |      |      |       |  |       |      |  0   |      |      |
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                                      &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_BRD &rgb_ug RGB_BRI &trans
 &out OUT_TOG &kp INS      &kp PSCRN    &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF                                   &kp PG_UP       &kp N7          &kp N8          &kp N9          &kp N0          &trans
 &trans       &kp LALT     &kp LCTRL    &kp LSHFT       &trans          &kp CAPS                                          &kp PG_DN       &kp N4          &kp N5          &kp N6          &kp KP_PLUS     &kp SQT
-&trans       &kp K_UNDO   &kp K_CUT    &kp K_COPY      &kp K_PASTE     &trans         &rgb_ug RGB_SAD   &rgb_ug RGB_SAI  &kp N0          &kp N1          &kp N2          &kp N3          &kp MINUS       &trans
+&trans       &studio_unlock   &kp K_CUT    &kp K_COPY      &kp K_PASTE     &trans         &rgb_ug RGB_SAD   &rgb_ug RGB_SAI  &kp N0          &kp N1          &kp N2          &kp N3          &kp MINUS       &trans
                           &trans       &trans          &trans          &trans         &trans            &trans           &trans          &kp N0          &trans          &trans
             >;                                                                                                   
 
