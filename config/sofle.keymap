@@ -28,6 +28,8 @@
 ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
 // ene ENE sign
 ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
+// Código Unicode: "¿" es U+00BF y "¡" es U+00A1
+ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
 
 
 / {
@@ -91,13 +93,13 @@ ZMK_UNICODE_PAIR(ene, N0, N0, F, N1, N0, N0, D, N1)
             display-name = "Lower";
 // TODO: Some binds are waiting for shifted keycode support.
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//                                             |       |  F1 |  F2 |  F3  |  F4  |  F5   |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
+//                                             |  ¿ ¡  |  F1 |  F2 |  F3  |  F4  |  F5   |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
 //                                             | `~    |     |     |  €   | prev | next  |                   |      |       |  UP   | HOME |  END  | BKSPC |
 //                                             | CAPS  |  {  |  }  |  (   |  )   |       |                   |      | LEFT  | DOWN  | RIGHT|       |   |   |
 //                                             |       |  -  |  +  |  [   |  ]   |  =    | RGBtog |  |       |      |       |  ;    |  :   |       |   \   |
 //                                                           |     |      |      |       |        |  |       |      |       |       |      |
             bindings = <
-&trans       &kp F1       &kp F2       &kp F3          &kp F4          &kp F5                                         &kp F6          &kp F7          &kp F8          &kp F9          &kp F10         &kp F11
+&inverted_punct       &kp F1       &kp F2       &kp F3          &kp F4          &kp F5                                         &kp F6          &kp F7          &kp F8          &kp F9          &kp F10         &kp F11
 &kp GRAVE    &kp F8       &kp F9       &euro_sign      &kp K_NEXT      &kp K_PREV                                     &trans          &trans          &kp UP          &kp HOME        &kp END         &kp BSPC
 &kp CAPS     &kp LBRC     &kp RBRC     &kp LS(N9)      &kp LS(N0)      &kp RBRC                                       &trans          &kp LEFT        &kp DOWN        &kp RIGHT       &trans          &kp PIPE
 &trans       &kp MINUS    &kp KP_PLUS  &kp LBRC        &kp RBKT        &kp EQUAL        &rgb_ug RGB_TOG   &trans      &trans          &trans          &kp SEMI        &kp COLON       &trans          &kp BSLH
