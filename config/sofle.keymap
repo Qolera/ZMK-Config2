@@ -94,15 +94,15 @@ ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
 // TODO: Some binds are waiting for shifted keycode support.
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                             |  ¿ ¡  |  F1 |  F2 |  F3  |  F4  |  F5   |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-//                                             | `~    |     |     |  €   | prev | next  |                   |      |       |  UP   | HOME |  END  | BKSPC |
+//                                             | `~    |     |     |  €   | prev | next  |                   |      |       |  UP   | HOME |  END  | Delet |
 //                                             | CAPS  |  {  |  }  |  (   |  )   |       |                   |      | LEFT  | DOWN  | RIGHT|       |   |   |
 //                                             |       |  -  |  +  |  [   |  ]   |  =    | RGBtog |  |       |      |       |  ;    |  :   |       |   \   |
 //                                                           |     |      |      |       |        |  |       |      |       |       |      |
             bindings = <
 &inverted_punct       &kp F1       &kp F2       &kp F3          &kp F4          &kp F5                                         &kp F6          &kp F7          &kp F8          &kp F9          &kp F10         &kp F11
-&kp GRAVE    &kp F8       &kp F9       &euro_sign      &kp K_NEXT      &kp K_PREV                                     &trans          &trans          &kp UP          &kp HOME        &kp END         &kp BSPC
-&kp CAPS     &kp LBRC     &kp RBRC     &kp LS(N9)      &kp LS(N0)      &kp RBRC                                       &trans          &kp LEFT        &kp DOWN        &kp RIGHT       &trans          &kp PIPE
-&trans       &kp MINUS    &kp KP_PLUS  &kp LBRC        &kp RBKT        &kp EQUAL        &rgb_ug RGB_TOG   &trans      &trans          &trans          &kp SEMI        &kp COLON       &trans          &kp BSLH
+&kp GRAVE    &trans       &trans       &euro_sign      &kp K_PREV      &kp K_NEXT                                     &trans          &trans          &kp UP          &kp HOME        &kp END         &kp DEL
+&kp CAPS     &kp LBRC     &kp RBRC     &kp LS(N9)      &kp LS(N0)      &trans                                         &trans          &kp LEFT        &kp DOWN        &kp RIGHT       &trans          &kp PIPE
+&trans       &kp MINUS    &kp KP_PLUS  &kp LBKT        &kp RBKT        &kp EQUAL        &rgb_ug RGB_TOG   &trans      &trans          &trans          &kp SEMI        &kp COLON       &trans          &kp BSLH
                           &trans       &trans          &trans          &trans           &trans            &trans      &trans          &trans          &trans          &trans
             >;
 
@@ -113,16 +113,16 @@ ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
             display-name = "Raise";
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                             | BTCLR | BT1  | BT2  | BT3  | BT4  | BT5  |                  | RGBT | RGB- | RGB+ | BR-  |  BR+  | Supr  |
-//                                             |OUT sel| INS  | PSCR | RGBT | RGB- | RGB+ |                  | PGUP |  7   |  8   |  9   |   0   |       |
-//                                             |       | ALT  | CTRL | SHFT |      | CAPS |                  | PGDN |  4   |  5   |  6   |   +   |  '    |
-//                                             |       | ZSTU | CUT  | COPY | PASTE|      |RGB_SAD|  |RGB_SAI|  0   |  1   |  2   |  3   |   -   |       |
-//                                                            |      |      |      |      |       |  |       |      |  0   |      |      |
+//                                             |OUT sel| INS  | PSCR | RGBT | RGB- | RGB+ |                  |      |  7   |  8   |  9   |   0   |       |
+//                                             |       | ALT  | CTRL | SHFT |      | CAPS |                  |  *   |  4   |  5   |  6   |   /   |  '    |
+//                                             |       | ZSTU | CUT  | COPY | PASTE|      |RGB_SAD|  |RGB_SAI|  +   |  1   |  2   |  3   |   -   |       |
+//                                                            |      |      |      |      |       |  |       |      |      |  0   |      |
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                                      &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF &rgb_ug RGB_BRD &rgb_ug RGB_BRI &trans
-&out OUT_TOG &kp INS      &kp PSCRN    &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF                                   &kp PG_UP       &kp N7          &kp N8          &kp N9          &kp N0          &trans
-&trans       &kp LALT     &kp LCTRL    &kp LSHFT       &trans          &kp CAPS                                          &kp PG_DN       &kp N4          &kp N5          &kp N6          &kp KP_PLUS     &kp SQT
-&trans       &studio_unlock   &kp K_CUT    &kp K_COPY      &kp K_PASTE     &trans         &rgb_ug RGB_SAD   &rgb_ug RGB_SAI  &kp N0          &kp N1          &kp N2          &kp N3          &kp MINUS       &trans
-                          &trans       &trans          &trans          &trans         &trans            &trans           &trans          &kp N0          &trans          &trans
+&out OUT_TOG &kp INS      &kp PSCRN    &rgb_ug RGB_TOG &rgb_ug RGB_EFR &rgb_ug RGB_EFF                                   &trans          &kp N7          &kp N8          &kp N9          &kp N0          &trans
+&trans       &kp LALT     &kp LCTRL    &kp LSHFT       &trans          &kp CAPS                                          &kp ASTRK       &kp N4          &kp N5          &kp N6          &kp SLASH       &kp SQT
+&trans       &studio_unlock   &kp K_CUT    &kp K_COPY      &kp K_PASTE     &trans         &rgb_ug RGB_SAD   &rgb_ug RGB_SAI  &kp KP_PLUS     &kp N1          &kp N2          &kp N3          &kp MINUS       &trans
+                          &trans       &trans          &trans          &trans         &trans            &trans           &trans          &trans          &kp N0          &trans
             >;                                                                                                   
 
             sensor-bindings = <&rgb_encoder_spd &rgb_encoder_hue>;
