@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:nicekeyboards.com)",
+      "WebFetch(domain:zmk.dev)",
+      "WebSearch",
+      "WebFetch(domain:community.sparkfun.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.splitkb.com)",
+      "WebFetch(domain:tinygo.org)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
