@@ -1,18 +1,14 @@
-#include <dt-bindings/led/led.h>
 #include <dt-bindings/i2c/i2c.h>
 
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
         };
     };
-
     i2c0_sleep: i2c0_sleep {
         group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>;
             low-power-enable;
         };
     };
@@ -24,17 +20,15 @@
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
-    clock-frequency = <I2C_BITRATE_FAST>;
+    clock-frequency = <I2C_BITRATE_STANDARD>; // 100 kHz
 
-    trackball: trackball@a {
+    trackball: trackball@0a {
         compatible = "pimoroni,trackball";
         reg = <0x0a>;
         status = "okay";
     };
 };
 
-/ {
-    chosen {
-        zmk,pointing-device = &trackball;
-    };
+&chosen {
+    zmk,pointing-device = &trackball;
 };
