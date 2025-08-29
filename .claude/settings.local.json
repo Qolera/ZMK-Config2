@@ -8,7 +8,9 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.splitkb.com)",
       "WebFetch(domain:tinygo.org)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
