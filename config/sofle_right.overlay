@@ -21,11 +21,6 @@
     /* Indicar a ZMK que este es el pointing device */
     chosen {
         zmk,pointing-device = &pim447;
-        zephyr,display = &oled;
+        zephyr,display = &pro_micro_ssd1306;
     };
-};
-
-/* Force-enable the SSD1306 node provided by the nice_oled shield */
-&oled {
-    status = "okay";
 };
