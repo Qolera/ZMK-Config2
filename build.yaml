@@ -7,7 +7,6 @@ include:
       -DZEPHYR_EXTRA_MODULES="${GITHUB_WORKSPACE}/pim447;${GITHUB_WORKSPACE}/zmk-nice-oled;${GITHUB_WORKSPACE}/patches"
       -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=y
       -DDTC_OVERLAY_FILE="${GITHUB_WORKSPACE}/config/sofle_right.overlay"
-      -DCONFIG_DEVICE_MAX_NAME_LEN=80
   - board: nice_nano_v2
     shield: sofle_left nice_oled
   - board: nice_nano_v2
