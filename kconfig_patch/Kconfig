@@ -1,0 +1,5 @@
+menu "Local Kconfig patches"
+config ZMK_KSCAN_DIRECT_POLLING
+    bool "Placeholder to satisfy Kconfig (upstream shield quirk)"
+    default n
+endmenu
