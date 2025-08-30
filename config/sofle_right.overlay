@@ -17,5 +17,9 @@
     };
 };
 
-/* Indicar a ZMK que este es el pointing device */
-&chosen { zmk,pointing-device = &trackball; };
+/ {
+    /* Indicar a ZMK que este es el pointing device */
+    chosen {
+        zmk,pointing-device = &trackball;
+    };
+};
