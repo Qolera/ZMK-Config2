@@ -1,4 +1,5 @@
 name: patches
 build:
   kconfig: []
-  cmake: []
+  cmake: patches
+  cmake-ext: true
