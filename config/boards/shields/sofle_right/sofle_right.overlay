@@ -20,16 +20,12 @@
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
-    clock-frequency = <100000>; // Volver a 100kHz para máxima compatibilidad
-    zephyr,concat-buf-size = <1024>; // Buffer más grande
-    // Forzar configuraciones para máxima compatibilidad
-    easydma-maxcnt-bits = <16>;
+    clock-frequency = <100000>;
 
-    trackball: trackball_pim447@a {
-        compatible = "pimoroni,trackball_pim447";
-        reg = <0xa>;
+    trackball: trackball@0a {
+        compatible = "pimoroni,trackball";
+        reg = <0x0a>;
         status = "okay";
-        move-factor = <1>;
     };
 };
 
