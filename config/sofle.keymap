@@ -59,6 +59,12 @@ ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
             bindings = <&rgb_ug RGB_SPI>, <&rgb_ug RGB_SPD>;
         };
 
+        pim447_bhv: pim447_bhv {
+            compatible = "zmk,behavior-pim447";
+            label = "PIM447";
+            #binding-cells = <2>;
+        };
+
     };
 
     conditional_layers {
