@@ -10,8 +10,8 @@
     };
 
     /* Trackball en el mismo bus */
-    trackball: trackball@0a {
-        compatible = "pimoroni,pim447", "pimoroni,trackball";
+    pim447: trackball@a {
+        compatible = "pimoroni,pim447";
         reg = <0x0a>;
         status = "okay";
     };
@@ -20,6 +20,6 @@
 / {
     /* Indicar a ZMK que este es el pointing device */
     chosen {
-        zmk,pointing-device = &trackball;
+        zmk,pointing-device = &pim447;
     };
 };
