@@ -20,13 +20,32 @@
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
-    clock-frequency = <250000>; // 250kHz - máximo para Pimoroni trackball
+    clock-frequency = <100000>; // Volver a 100kHz para máxima compatibilidad
+    zephyr,concat-buf-size = <1024>; // Buffer más grande
+    // Forzar configuraciones para máxima compatibilidad
+    easydma-maxcnt-bits = <16>;
 
+    // Probar múltiples direcciones I2C comunes para Pimoroni trackball
     trackball: trackball@0a {
         compatible = "pimoroni,trackball";
-        reg = <0x0a>;
+        reg = <0x0a>; // Dirección estándar
         status = "okay";
     };
+    
+    // Direcciones alternativas para testing (descomenta si 0x0a no funciona)
+    /* 
+    trackball_alt1: trackball@0b {
+        compatible = "pimoroni,trackball";
+        reg = <0x0b>;
+        status = "disabled";
+    };
+    
+    trackball_alt2: trackball@48 {
+        compatible = "pimoroni,trackball"; 
+        reg = <0x48>;
+        status = "disabled";
+    };
+    */
 };
 
 &chosen {
