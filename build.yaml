@@ -1,8 +1,8 @@
 include:
   - board: nice_nano_v2
-    shield: sofle_right nice_oled         # o solo "sofle_right" si prefieres sin OLED
-    snippet: zmk-usb-logging              # crea un puerto COM por USB
-    cmake-args: >                         # habilita logs y shell (temporal para depurar)
+    shield: sofle_right nice_oled
+    snippet: zmk-usb-logging
+    cmake-args: >
       -DCONFIG_LOG=y
       -DCONFIG_ZMK_LOG_LEVEL_DBG=y
       -DCONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=8000
@@ -10,9 +10,8 @@ include:
       -DCONFIG_SHELL_BACKEND_SERIAL=y
       -DCONFIG_I2C_SHELL=y
       -DCONFIG_UART_LINE_CTRL=y
-
+      -DCONFIG_SENSOR_SHELL=n          # << evita el conflicto
   - board: nice_nano_v2
     shield: sofle_left nice_oled
-
   - board: nice_nano_v2
     shield: settings_reset
