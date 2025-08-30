@@ -3,8 +3,10 @@ include:
     shield: sofle_right nice_oled
     snippet: zmk-usb-logging
     cmake-args: >
+      -DBOARD_ROOT=${GITHUB_WORKSPACE}/zmk/app
+      -DSHIELD="sofle_right nice_oled"
       -DDTC_OVERLAY_FILE="config/boards/shields/sofle/sofle_right.overlay;config/sofle.keymap;zmk/app/snippets/zmk-usb-logging/zmk-usb-logging.overlay"
-      -DZEPHYR_EXTRA_MODULES=${GITHUB_WORKSPACE}/pim447
+      -DZEPHYR_EXTRA_MODULES="${GITHUB_WORKSPACE}/pim447;${GITHUB_WORKSPACE}/zmk-nice-oled"
       -DCONFIG_LOG=y
       -DCONFIG_ZMK_LOG_LEVEL_DBG=y
       -DCONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=8000
