@@ -11,13 +11,9 @@
 
     /* Trackball en el mismo bus */
     trackball: trackball@0a {
-        compatible = "pimoroni,pim447", "pimoroni,trackball", "pim447";
+        compatible = "pimoroni,pim447", "pimoroni,trackball";
         reg = <0x0a>;
         status = "okay";
-        /* Opcionales, por si el driver los soporta: */
-        poll-interval-ms = <8>;
-        /* invert-x; */
-        /* invert-y; */
     };
 };
 
