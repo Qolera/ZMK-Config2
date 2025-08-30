@@ -1,5 +1,6 @@
 #include <dt-bindings/i2c/i2c.h>
 
+/* Pines I2C en el lado derecho (central): SDA=P0.17, SCL=P0.20 */
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 { psels = <NRF_PSEL(TWIM_SDA, 0, 17)>, <NRF_PSEL(TWIM_SCL, 0, 20)>; };
@@ -9,20 +10,23 @@
     };
 };
 
+/* Declara el bus y nómbralo I2C_0 para usarlo desde la shell */
 &i2c0 {
     compatible = "nordic,nrf-twim";
     status = "okay";
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
-    clock-frequency = <I2C_BITRATE_STANDARD>;   // 100 kHz
-    label = "I2C_0";                            // ayuda a la shell
+    clock-frequency = <I2C_BITRATE_STANDARD>;   /* 100 kHz */
+    label = "I2C_0";
 
+    /* Nodo del trackball (ajusta 'compatible' al del módulo que uses) */
     trackball: trackball@0a {
-        compatible = "pimoroni,pim447";        // o "pimoroni,trackball" según tu módulo
+        compatible = "pimoroni,pim447";         /* o "pimoroni,trackball" según módulo */
         reg = <0x0a>;
         status = "okay";
     };
 };
 
+/* Indica a ZMK que este es el pointing device */
 &chosen { zmk,pointing-device = &trackball; }
