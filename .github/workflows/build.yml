@@ -2,4 +2,65 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - board: nice_nano_v2
+            shield: sofle_right nice_oled
+          - board: nice_nano_v2  
+            shield: sofle_left nice_oled
+          - board: nice_nano_v2
+            shield: settings_reset
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Cache west modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-zephyr-modules
+        with:
+          path: |
+            modules/
+            tools/
+            zephyr/
+            bootloader/
+            zmk/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: West Init
+        run: west init -l config
+
+      - name: West Update
+        run: west update
+
+      - name: Bump Zephyr device name length (hotfix)
+        run: |
+          sed -i 's/#define Z_DEVICE_MAX_NAME_LEN 48U/#define Z_DEVICE_MAX_NAME_LEN 80U/' zephyr/include/zephyr/device.h
+          grep -n 'Z_DEVICE_MAX_NAME_LEN' zephyr/include/zephyr/device.h
+
+      - name: West Zephyr export
+        run: west zephyr-export
+
+      - name: West Build (${{ matrix.shield }})
+        run: west build -s zmk/app -b ${{ matrix.board }} -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" ${{ matrix.shield && format('-DSHIELD="{0}"', matrix.shield) }}
+
+      - name: Rename artifacts
+        run: |
+          if [ -f build/zephyr/zmk.uf2 ]; then
+            cp build/zephyr/zmk.uf2 "${{ matrix.shield }}-${{ matrix.board }}-zmk.uf2"
+          fi
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: firmware
+          path: "*.uf2"

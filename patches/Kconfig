@@ -1,7 +1,0 @@
-menu "Local patches"
-config ZMK_KSCAN_DIRECT_POLLING
-    bool "Placeholder to satisfy Kconfig (upstream shield quirk)"
-    default n
-    help
-      Fixes undefined symbol from clueboard_california shield.
-endmenu
