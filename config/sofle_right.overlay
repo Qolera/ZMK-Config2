@@ -4,9 +4,9 @@
 &pro_micro_i2c {                      /* <-- el mismo bus del OLED: i2c@40003000 */
     status = "okay";
 
-    /* (Opcional pero útil) Si hubiese un ssd1306 aquí, que quede deshabilitado en el derecho */
+    /* OLED display for nice_oled shield */
     ssd1306@3c {
-        status = "disabled";
+        status = "okay";
     };
 
     /* Trackball en el mismo bus */
@@ -21,5 +21,11 @@
     /* Indicar a ZMK que este es el pointing device */
     chosen {
         zmk,pointing-device = &pim447;
+        zephyr,display = &oled;
     };
+};
+
+/* Force-enable the SSD1306 node provided by the nice_oled shield */
+&oled {
+    status = "okay";
 };
