@@ -1,10 +1,10 @@
 #include <dt-bindings/i2c/i2c.h>
 
-// Configuración I2C minima para trackball
+// Minimal I2C configuration for trackball testing
 &i2c0 {
     status = "okay";
-    clock-frequency = <I2C_BITRATE_STANDARD>; // 100 kHz estable
-
+    clock-frequency = <I2C_BITRATE_STANDARD>; // 100 kHz for reliability
+    
     trackball: trackball@0a {
         compatible = "pimoroni,trackball";
         reg = <0x0a>;
