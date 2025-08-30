@@ -12,7 +12,6 @@ include:
       -DCONFIG_UART_LINE_CTRL=y
       -DCONFIG_SENSOR_SHELL=n
       -DCONFIG_SHELL_BACKEND_SERIAL_RX_RING_BUFFER_SIZE=2048
-      -DCONFIG_PIM447=y
   - board: nice_nano_v2
     shield: sofle_left nice_oled
   - board: nice_nano_v2
