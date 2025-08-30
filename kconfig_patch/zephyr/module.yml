@@ -1,4 +1,0 @@
-name: kconfig_patch
-build:
-  cmake: .
-  kconfig: Kconfig
