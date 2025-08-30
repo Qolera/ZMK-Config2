@@ -1,0 +1,16 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: pim
+      url-base: https://github.com/t0bybr    # repo del driver PIM447
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
+    - name: pim447
+      remote: pim
+      revision: main
+  self:
+    path: config
