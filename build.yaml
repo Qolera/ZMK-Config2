@@ -4,11 +4,9 @@ include:
     snippet: zmk-usb-logging
     cmake-args: >
       -DBOARD_ROOT=${GITHUB_WORKSPACE}/zmk/app
-      -DZEPHYR_EXTRA_MODULES="${GITHUB_WORKSPACE}/pim447;${GITHUB_WORKSPACE}/zmk-nice-oled;${GITHUB_WORKSPACE}/kconfig_patch;${GITHUB_WORKSPACE}/pim447_vendor"
+      -DZEPHYR_EXTRA_MODULES="${GITHUB_WORKSPACE}/pim447;${GITHUB_WORKSPACE}/zmk-nice-oled;${GITHUB_WORKSPACE}/kconfig_patch"
       -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=y
       -DDTC_OVERLAY_FILE="${GITHUB_WORKSPACE}/config/sofle_right.overlay"
-      -DEXTRA_CFLAGS="-DZ_DEVICE_MAX_NAME_LEN=80"
-      -DCMAKE_C_FLAGS:STRING="-DZ_DEVICE_MAX_NAME_LEN=80"
   - board: nice_nano_v2
     shield: sofle_left nice_oled
   - board: nice_nano_v2
