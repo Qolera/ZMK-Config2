@@ -5,6 +5,7 @@
  */
 
 #include <zmk/keymap.h>
+#include <automouse.h>
 
 // Define the automouse layer index - adjust this to match your keymap
 #ifndef LAYER_AUTOMOUSE
