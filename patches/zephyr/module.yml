@@ -1,3 +1,5 @@
 name: patches
 build:
+  cmake: .
   kconfig: Kconfig
+  dts: dts/bindings

@@ -1,0 +1,1 @@
+# Patches module - minimal CMake file for module requirements
