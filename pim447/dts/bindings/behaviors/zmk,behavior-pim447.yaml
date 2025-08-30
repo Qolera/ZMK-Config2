@@ -1,3 +1,0 @@
-description: PIM447 custom behavior for ZMK
-compatible: "zmk,behavior-pim447"
-include: two_param.yaml
