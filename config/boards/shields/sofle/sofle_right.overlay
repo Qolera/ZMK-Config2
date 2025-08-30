@@ -30,6 +30,10 @@
     };
 };
 
+// Activar OLED si existe con otro label
+&display { status = "okay"; };
+&ssd1306 { status = "okay"; };
+
 /* Indica a ZMK que este es el pointing device */
 &chosen { 
     zmk,pointing-device = &trackball;
