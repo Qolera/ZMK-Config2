@@ -25,27 +25,12 @@
     // Forzar configuraciones para máxima compatibilidad
     easydma-maxcnt-bits = <16>;
 
-    // Probar múltiples direcciones I2C comunes para Pimoroni trackball
-    trackball: trackball@0a {
-        compatible = "pimoroni,trackball";
-        reg = <0x0a>; // Dirección estándar
+    trackball: trackball_pim447@a {
+        compatible = "pimoroni,trackball_pim447";
+        reg = <0xa>;
         status = "okay";
+        move-factor = <1>;
     };
-    
-    // Direcciones alternativas para testing (descomenta si 0x0a no funciona)
-    /* 
-    trackball_alt1: trackball@0b {
-        compatible = "pimoroni,trackball";
-        reg = <0x0b>;
-        status = "disabled";
-    };
-    
-    trackball_alt2: trackball@48 {
-        compatible = "pimoroni,trackball"; 
-        reg = <0x48>;
-        status = "disabled";
-    };
-    */
 };
 
 &chosen {
