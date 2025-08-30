@@ -1,5 +1,2 @@
-# Define para todo el árbol Zephyr
-zephyr_compile_definitions(
-  Z_DEVICE_MAX_NAME_LEN=80
-  CONFIG_DEVICE_MAX_NAME_LEN=80
-)
+# Kconfig patch module - adds include path for header patches
+target_include_directories(zephyr_interface INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
