@@ -3,8 +3,10 @@ include:
     shield: sofle_right nice_oled
     snippet: zmk-usb-logging
     cmake-args: >
+      -DDTC_OVERLAY_FILE="config/boards/shields/sofle/sofle_right.overlay;config/sofle.keymap;zmk/app/snippets/zmk-usb-logging/zmk-usb-logging.overlay"
+      -DZEPHYR_EXTRA_MODULES=${GITHUB_WORKSPACE}/pim447
       -DCONFIG_LOG=y
-      -DCONFIG_ZMK_LOG_LEVEL_INF=y
+      -DCONFIG_ZMK_LOG_LEVEL_DBG=y
       -DCONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=8000
       -DCONFIG_SHELL=y
       -DCONFIG_SHELL_BACKEND_SERIAL=y
@@ -12,6 +14,7 @@ include:
       -DCONFIG_UART_LINE_CTRL=y
       -DCONFIG_SENSOR_SHELL=n
       -DCONFIG_SHELL_BACKEND_SERIAL_RX_RING_BUFFER_SIZE=2048
+      -DCONFIG_SHELL_BACKEND_SERIAL_TX_RING_BUFFER_SIZE=4096
   - board: nice_nano_v2
     shield: sofle_left nice_oled
   - board: nice_nano_v2
