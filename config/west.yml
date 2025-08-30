@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: mctechnology17
       url-base: https://github.com/mctechnology17
+    - name: t0bybr
+      url-base: https://github.com/t0bybr
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -11,6 +13,9 @@ manifest:
       import: app/west.yml
     - name: zmk-nice-oled
       remote: mctechnology17
+      revision: main
+    - name: pim447              # << el driver del trackball
+      remote: t0bybr
       revision: main
   self:
     path: config
