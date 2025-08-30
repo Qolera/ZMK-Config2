@@ -11,7 +11,7 @@
 
     /* Trackball en el mismo bus */
     pimoroni_pim447: trackball@a {
-        compatible = "pimoroni,pim447";
+        compatible = "zmk,pimoroni-pim447";
         reg = <0x0a>;
         status = "okay";
     };
