@@ -1,0 +1,17 @@
+description: Pimoroni PIM447 trackball I2C device
+compatible: "pimoroni,pim447"
+include: i2c-device.yaml
+
+properties:
+  reg:
+    required: true
+    
+  int-gpios:
+    type: phandle-array
+    required: false
+    description: GPIO pin for interrupt signal
+    
+  reset-gpios:
+    type: phandle-array
+    required: false
+    description: GPIO pin for reset signal
