@@ -2,15 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: urob
-      url-base: https://github.com/urob
+    - name: tobybr
+      url-base: https://github.com/t0bybr
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: zmk-helpers
-      remote: urob
+    - name: pim447
+      remote: tobybr
       revision: main
   self:
     path: config

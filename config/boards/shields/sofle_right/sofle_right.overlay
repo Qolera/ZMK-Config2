@@ -23,7 +23,7 @@
     clock-frequency = <100000>;
 
     trackball: trackball@0a {
-        compatible = "pimoroni,trackball";
+        compatible = "pimoroni,pim447";
         reg = <0x0a>;
         status = "okay";
     };
