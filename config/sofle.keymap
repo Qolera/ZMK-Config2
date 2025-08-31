@@ -63,7 +63,7 @@ ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
         scroll_encoder: scroll_encoder {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&mwh_scroll_up>, <&mwh_scroll_down>;
+            bindings = <&kp MS_WH_UP>, <&kp MS_WH_DOWN>;
         };
     };
 
