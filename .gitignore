@@ -1,6 +1,7 @@
 /.west
 /bootloader
-/modules
+/modules/*
+!/modules/trackball_pim447
 /tools
 /zephyr
 /zmk-config
