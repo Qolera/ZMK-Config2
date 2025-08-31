@@ -1,0 +1,5 @@
+config PATCHES_AUTOMOUSE
+    bool "Enable automouse layer support for PIM447"
+    default y
+    help
+      Provides activate_automouse_layer function for PIM447 trackball driver
