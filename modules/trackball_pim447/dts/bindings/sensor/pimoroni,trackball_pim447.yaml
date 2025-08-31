@@ -61,3 +61,11 @@ properties:
   invert-y:
     type: boolean
     description: Invert Y-axis direction
+
+  mode:
+    type: int
+    enum:
+      - 0   # cursor/move
+      - 1   # scroll
+    default: 0
+    description: Default operating mode (0=move, 1=scroll)
