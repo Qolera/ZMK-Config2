@@ -7,17 +7,19 @@
 #include <zephyr/kernel.h>
 #include <zmk/keymap.h>
 
-// Define the automouse layer index - adjust this to match your keymap
-#ifndef LAYER_AUTOMOUSE  
-#define LAYER_AUTOMOUSE 4   // Assuming automouse is layer 4, adjust as needed
-#endif
-
-// Provide the missing activate_automouse_layer function for PIM447 driver
+// Stub implementation for PIM447 driver
 void activate_automouse_layer(void) {
-    zmk_keymap_layer_activate(LAYER_AUTOMOUSE);
+    // Activate layer 4 - adjust as needed for your keymap
+    zmk_keymap_layer_activate(4);
 }
 
-// Optional: also provide deactivate function in case it's needed
 void deactivate_automouse_layer(void) {
-    zmk_keymap_layer_deactivate(LAYER_AUTOMOUSE);
+    zmk_keymap_layer_deactivate(4);
 }
+
+// Force this to be linked
+static int stub_init(void) {
+    return 0;
+}
+
+SYS_INIT(stub_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
