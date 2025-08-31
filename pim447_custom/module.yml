@@ -1,4 +1,7 @@
-name: pim447_custom
+name: pimoroni_pim447
 build:
+  cmake: .
   kconfig: Kconfig
-  cmake: CMakeLists.txt
+dts:
+  bindings: dts/bindings
+  vendor-prefixes: dts/bindings/vendor-prefixes.txt

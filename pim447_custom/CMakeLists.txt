@@ -1,3 +1,3 @@
 zephyr_library()
-zephyr_library_sources(src/pim447_custom.c)
 zephyr_library_include_directories(include)
+zephyr_library_sources_ifdef(CONFIG_PIMORONI_PIM447 src/pim447_custom.c)

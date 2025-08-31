@@ -1,8 +1,13 @@
-config PIM447_CUSTOM
-    bool "Custom Pimoroni PIM447 Trackball Driver"
+menu "Pimoroni PIM447"
+
+config PIMORONI_PIM447
+    bool "Enable Pimoroni PIM447 driver"
+    default y
     depends on I2C && INPUT
     select SENSOR
     help
       Enable custom driver for Pimoroni PIM447 trackball breakout.
       
       This driver provides basic trackball input functionality for ZMK.
+
+endmenu

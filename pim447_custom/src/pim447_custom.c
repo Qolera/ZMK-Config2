@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#define DT_DRV_COMPAT pimoroni_pim447_custom
+#define DT_DRV_COMPAT pimoroni_pim447
 
 #include <zephyr/device.h>
 #include <zephyr/drivers/i2c.h>
