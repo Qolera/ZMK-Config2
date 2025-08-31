@@ -25,7 +25,7 @@ jobs:
       - name: Build Sofle left with Pimoroni
         run: west build -s app -b nice_nano_v2 -DSHIELD=sofle_left -- -DCONFIG_ZMK_MOUSE=y
       - name: Archive firmware
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: sofle-left-pimoroni-zmk
           path: build/zephyr/zmk.uf2
