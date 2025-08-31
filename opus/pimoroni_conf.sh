@@ -1,0 +1,63 @@
+# Copyright (c) 2020 Ryan Cross
+# SPDX-License-Identifier: MIT
+
+# Display Configuration
+CONFIG_ZMK_DISPLAY=y
+CONFIG_ZMK_DISPLAY_STATUS_SCREEN_CUSTOM=y
+
+# Soporte para encoders
+CONFIG_EC11=y
+CONFIG_EC11_TRIGGER_GLOBAL_THREAD=y
+
+# ========================================
+# CONFIGURACIÓN PIMORONI TRACKBALL
+# ========================================
+
+# Habilitar soporte de mouse
+CONFIG_ZMK_MOUSE=y
+
+# Habilitar I2C
+CONFIG_I2C=y
+
+# Habilitar el driver del Pimoroni
+CONFIG_PIM447_TRACKBALL=y
+
+# Configuración del polling (en microsegundos)
+CONFIG_ZMK_MOUSE_TICK_DURATION=8000
+
+# Configuración de sensibilidad (ajusta estos valores según preferencia)
+CONFIG_PIM447_SCALE_X=15
+CONFIG_PIM447_SCALE_Y=15
+
+# Invertir ejes si es necesario
+# CONFIG_PIM447_INVERT_X=y
+# CONFIG_PIM447_INVERT_Y=y
+
+# Configuración USB HID
+CONFIG_USB_DEVICE_HID=y
+CONFIG_USB_HID_POLL_INTERVAL_MS=1
+
+# ========================================
+# CONFIGURACIÓN RGB
+# ========================================
+CONFIG_ZMK_RGB_UNDERGLOW=y
+CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER=n
+CONFIG_WS2812_STRIP=y
+
+# ========================================
+# CONFIGURACIÓN BLUETOOTH Y ENERGÍA
+# ========================================
+CONFIG_BT_CTLR_TX_PWR_PLUS_8=y
+CONFIG_ZMK_BLE_EXPERIMENTAL_CONN=y
+
+# Configuración de tiempo de reposo (33 minutos)
+CONFIG_ZMK_SLEEP=y
+CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=2000000
+
+# ========================================
+# LOGGING (solo para debug)
+# ========================================
+# CONFIG_ZMK_USB_LOGGING=y
+# CONFIG_LOG=y
+# CONFIG_I2C_LOG_LEVEL_DBG=y
+# CONFIG_SENSOR_LOG_LEVEL_DBG=y

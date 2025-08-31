@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(west build:*)",
+      "Bash(git clone:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
