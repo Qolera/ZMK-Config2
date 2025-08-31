@@ -1,0 +1,41 @@
+/*
+ * Configuración mínima para Pimoroni Trackball
+ */
+
+#include <dt-bindings/led/led.h>
+
+&pinctrl {
+    i2c0_default: i2c0_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            bias-pull-up;
+        };
+    };
+    
+    i2c0_sleep: i2c0_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            low-power-enable;
+            bias-pull-up;
+        };
+    };
+};
+
+&i2c0 {
+    compatible = "nordic,nrf-twim";
+    status = "okay";
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-1 = <&i2c0_sleep>;
+    pinctrl-names = "default", "sleep";
+    
+    clock-frequency = <250000>;
+    
+    trackball: pim447@a {
+        compatible = "pim447";
+        reg = <0x0a>;
+        label = "PIM447_TRACKBALL";
+        status = "okay";
+    };
+};
