@@ -1,0 +1,4 @@
+name: trackball_pim447
+build:
+  cmake: .
+  kconfig: Kconfig

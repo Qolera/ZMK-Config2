@@ -1,28 +1,11 @@
-#include <dt-bindings/zmk/trackball_pim447.h>
-
 &i2c0 {
     status = "okay";
-    
-    pim447_trackball@a {
-        compatible = "pimoroni,trackball_pim447";
-        reg = <0xa>;
-        label = "PIM447_TRACKBALL";
-        swap-axes;
-        invert-move-x;
-        power-layer = <0>; /* MOUSE layer */
-        
-        mode = <PIM447_MOVE>;        // default: PIM447_MOVE for mouse move
-        move-factor-x = <200>;       // Sensitivity X; default: 100
-        move-factor-y = <200>;       // Sensitivity Y; default: 100
-        move-inertia-x = <90>;       // Inertia X
-        move-inertia-y = <90>;       // Inertia Y
-        norm = <PIM447_NORM_EUCLID>; // Metric for 2d distance
-        exactness = <5>;             // Range of small velocities
-        max-accel = <200>;           // Maximum acceleration
-        scroll-divisor-x = <1>;      // Increase wheel velocity
-        scroll-divisor-y = <1>;      // Increase wheel velocity
-        invert-scroll-x;             // Invert wheel X axis
-        button = <0>;                // Mouse button on press
-        poll-interval = <10>;        // Poll interval in ms
+    sda-pin = <26>;
+    scl-pin = <27>;
+
+    pim447: trackball@0a {
+        compatible = "pimoroni,pim447-trackball";
+        reg = <0x0a>;
+        label = "PIM447";
     };
 };
