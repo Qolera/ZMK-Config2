@@ -22,8 +22,17 @@ jobs:
         run: west update
       - name: Export Zephyr CMake package (west zephyr-export)
         run: west zephyr-export
+      - name: Sanity check - verify paths
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+          echo "ZMK app directory:"
+          ls -la zmk/app/ || echo "zmk/app/ not found"
+          echo "Config directory:"
+          ls -la config/
       - name: Build Sofle left with Pimoroni
-        run: west build -s app -b nice_nano_v2 -DSHIELD=sofle_left -- -DCONFIG_ZMK_MOUSE=y
+        run: west build -s zmk/app -b nice_nano_v2 -DSHIELD=sofle_left -- -DZMK_CONFIG=/github/workspace/config -DCONFIG_ZMK_MOUSE=y -DCONFIG_PIM447_TRACKBALL=y
       - name: Archive firmware
         uses: actions/upload-artifact@v4
         with:
