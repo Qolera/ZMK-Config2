@@ -9,19 +9,19 @@
         status = "okay";
     };
 
-    /* Trackball en el mismo bus */
+    /* Trackball temporarily disabled - uncomment when upstream module is fixed
     pimoroni_pim447: trackball@a {
         compatible = "zmk,pimoroni-pim447";
         reg = <0x0a>;
         status = "okay";
         int-gpios = <&pro_micro 4 GPIO_ACTIVE_LOW>;
-    };
+    }; */
 };
 
 / {
     /* Indicar a ZMK que este es el pointing device */
     chosen {
-        zmk,pointing-device = &pimoroni_pim447;
+        /* zmk,pointing-device = &pimoroni_pim447; // Disabled until upstream module is fixed */
         zephyr,display = &pro_micro_ssd1306;
     };
 };
