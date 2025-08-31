@@ -3,8 +3,7 @@ menu "Pimoroni PIM447"
 config PIMORONI_PIM447
     bool "Enable Pimoroni PIM447 driver"
     default y
-    depends on I2C && INPUT
-    select SENSOR
+    depends on I2C && INPUT && SENSOR
     help
       Enable custom driver for Pimoroni PIM447 trackball breakout.
       
