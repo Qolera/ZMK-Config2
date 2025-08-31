@@ -1,4 +1,4 @@
 name: pim447_custom
 build:
   kconfig: Kconfig
-  cmake: pim447_custom
+  cmake: CMakeLists.txt
