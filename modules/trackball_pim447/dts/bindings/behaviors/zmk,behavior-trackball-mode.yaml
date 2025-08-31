@@ -1,0 +1,31 @@
+# Copyright (c) 2023-2025 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: Trackball mode behavior
+
+compatible: "zmk,behavior-trackball-mode"
+
+#include: zmk,behavior-base.yaml
+
+properties:
+  label:
+    type: string
+    description: Human-readable name for the behavior
+  "#binding-cells":
+    type: int
+    const: 1
+  default-mode:
+    type: int  # Changed from string to int
+    enum:
+      - 0  # 0 = move
+      - 1  # 1 = scroll
+    default: 0 # Default to move mode
+    description: Default mode (0=move, 1=scroll)
+  led-mode-move:
+    type: int
+    default: 2 # Corresponds to LED_GREEN in trackball_pim447.h
+    description: LED color preset for move mode (see include/dt-bindings/zmk/trackball_pim447.h)
+  led-mode-scroll:
+    type: int
+    default: 3 # Corresponds to LED_BLUE in trackball_pim447.h
+    description: LED color preset for scroll mode (see include/dt-bindings/zmk/trackball_pim447.h)

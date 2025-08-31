@@ -1,10 +1,12 @@
-menu "PIM447 trackball"
+# Copyright (c) 2023-2025 The ZMK Contributors
+# SPDX-License-Identifier: MIT
 
 config ZMK_TRACKBALL_PIM447
-	bool "Enable Pimoroni PIM447 trackball"
-	depends on I2C && ZMK_MOUSE
-	select SENSOR
+	bool "PIM447 trackball module driver support"
+	depends on ZMK_INPUT
+	select I2C
 	help
-	  Enables support for the Pimoroni PIM447 I2C trackball.
+	  Enable support for the Pimoroni PIM447 trackball module driver
 
-endmenu
+source "src/drivers/sensor/trackball_pim447/Kconfig"
+source "src/behaviors/behavior_trackball_mode/Kconfig"

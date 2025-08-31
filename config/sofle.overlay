@@ -4,8 +4,14 @@
     scl-pin = <27>;
 
     pim447: trackball@0a {
-        compatible = "pimoroni,pim447-trackball";
+        compatible = "pimoroni,trackball_pim447";
         reg = <0x0a>;
         label = "PIM447";
+        sensitivity = <64>;
+        move-factor = <2>;
+        scroll-factor = <2>;
+        led-red = <255>;
+        led-green = <0>;
+        led-blue = <0>;
     };
 };
