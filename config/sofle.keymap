@@ -59,12 +59,6 @@ ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
             bindings = <&rgb_ug RGB_SPI>, <&rgb_ug RGB_SPD>;
         };
         
-        // Mouse scroll behavior
-        scroll_encoder: scroll_encoder {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&inc_dec_kp C_WH_UP C_WH_DOWN>;
-        };
     };
 
     conditional_layers {
@@ -114,7 +108,7 @@ ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
                           &trans       &trans          &trans          &trans           &trans            &mkp RCLK   &trans          &trans          &trans          &mo 4
             >;
 
-            sensor-bindings = <&rgb_encoder_bri &scroll_encoder>;
+            sensor-bindings = <&rgb_encoder_bri>;
         };
 
         raise_layer {
@@ -162,7 +156,7 @@ ZMK_UNICODE_PAIR(inverted_punct, N0, N0, B, F, N0, N0, A, 1)
 &trans       &trans       &trans       &trans          &trans          &trans           &trans            &trans      &trans          &mkp MCLK       &trans          &trans          &trans          &trans
                           &trans       &trans          &trans          &trans           &mkp LCLK         &mkp RCLK   &trans          &trans          &trans          &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
     };
