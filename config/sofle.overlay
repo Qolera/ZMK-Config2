@@ -3,7 +3,7 @@
     sda-pin = <26>;
     scl-pin = <27>;
 
-    pim447: trackball@0a {
+    pim447: trackball@a {
         compatible = "pimoroni,trackball_pim447";
         reg = <0x0a>;
         label = "PIM447";
@@ -13,5 +13,16 @@
         led-red = <255>;
         led-green = <0>;
         led-blue = <0>;
+    };
+};
+
+/ {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&pim447>;
+    };
+
+    right_split_device {
+        compatible = "zmk,input-split-device";
     };
 };
