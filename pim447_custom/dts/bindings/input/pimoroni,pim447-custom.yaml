@@ -1,0 +1,16 @@
+description: Pimoroni PIM447 Trackball (Custom Driver)
+
+compatible: "pimoroni,pim447-custom"
+
+include: i2c-device.yaml
+
+properties:
+  int-gpios:
+    type: phandle-array
+    required: false
+    description: |
+      GPIO connected to the trackball interrupt pin.
+      This pin will be configured as input with interrupt on falling edge.
+
+  label:
+    required: false

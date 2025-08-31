@@ -1,0 +1,1 @@
+zephyr_sources_ifdef(CONFIG_PIM447_CUSTOM src/pim447_custom.c)
