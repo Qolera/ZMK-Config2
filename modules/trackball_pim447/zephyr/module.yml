@@ -1,0 +1,6 @@
+name: zmk-driver-pim447
+build:
+  cmake: .
+  kconfig: Kconfig
+  settings:
+    dts_root: dts

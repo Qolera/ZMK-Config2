@@ -1,0 +1,27 @@
+&i2c0 {
+    status = "okay";
+    sda-pin = <26>;
+    scl-pin = <27>;
+
+    trackball_pim447: trackball@0A {
+        compatible = "pimoroni,trackball_pim447";
+        reg = <0x0A>;
+        sensitivity = <64>;
+        move-factor = <2>;
+        scroll-factor = <2>;
+        led-red = <255>;
+        led-green = <0>;
+        led-blue = <0>;
+    };
+};
+
+/ {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_pim447>;
+    };
+
+    right_split_device {
+        compatible = "zmk,input-split-device";
+    };
+};
