@@ -32,7 +32,7 @@ jobs:
           echo "Config directory:"
           ls -la config/
       - name: Build Sofle left with Pimoroni
-        run: west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=sofle_left -DZMK_CONFIG=/github/workspace/config -DCONFIG_ZMK_MOUSE=y -DCONFIG_PIM447_TRACKBALL=y
+        run: west build -s app -b nice_nano_v2 -- -DSHIELD=sofle_left -DZMK_CONFIG=/github/workspace/config -DCONFIG_ZMK_MOUSE=y -DCONFIG_PIM447_TRACKBALL=y
       - name: Archive firmware
         uses: actions/upload-artifact@v4
         with:
