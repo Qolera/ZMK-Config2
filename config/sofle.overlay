@@ -79,11 +79,12 @@
     // Importante: velocidad máxima 250kHz para el Pimoroni
     clock-frequency = <250000>;
     
-    // Dispositivo genérico I2C para el trackball (usaremos input listener)
-    trackball: trackball@a {
-        compatible = "zmk,i2c-generic";
+    // Driver específico PIM447 para el trackball Pimoroni
+    trackball: pim447@a {
+        compatible = "pim447";
         reg = <0x0a>;
-        label = "TRACKBALL";
+        label = "PIM447_TRACKBALL";
+        status = "okay";
     };
 };
 
