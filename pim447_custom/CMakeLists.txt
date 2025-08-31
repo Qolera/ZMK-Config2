@@ -1,1 +1,3 @@
-zephyr_sources_ifdef(CONFIG_PIM447_CUSTOM src/pim447_custom.c)
+zephyr_library()
+zephyr_library_sources(src/pim447_custom.c)
+zephyr_library_include_directories(include)

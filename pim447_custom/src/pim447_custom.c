@@ -12,6 +12,7 @@
 #include <zephyr/input/input.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include "pim447_custom.h"
 
 LOG_MODULE_REGISTER(pim447_custom, CONFIG_INPUT_LOG_LEVEL);
 
