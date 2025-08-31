@@ -11,7 +11,13 @@ jobs:
         include:
           - board: nice_nano_v2
             shield: sofle_right nice_oled
-          - board: nice_nano_v2  
+            snippet: zmk-usb-logging
+            cmake-args: >
+              -DBOARD_ROOT=${GITHUB_WORKSPACE}/zmk/app
+              -DZEPHYR_EXTRA_MODULES="${GITHUB_WORKSPACE}/pim447_custom;${GITHUB_WORKSPACE}/zmk-nice-oled"
+              -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=y
+              -DDTC_OVERLAY_FILE="${GITHUB_WORKSPACE}/config/sofle_right.overlay"
+          - board: nice_nano_v2
             shield: sofle_left nice_oled
           - board: nice_nano_v2
             shield: settings_reset
@@ -51,7 +57,7 @@ jobs:
         run: west zephyr-export
 
       - name: West Build (${{ matrix.shield }})
-        run: west build -s zmk/app -b ${{ matrix.board }} -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" ${{ matrix.shield && format('-DSHIELD="{0}"', matrix.shield) }}
+        run: west build -s zmk/app -b ${{ matrix.board }} -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" ${{ matrix.shield && format('-DSHIELD="{0}"', matrix.shield) }} ${{ matrix.cmake-args || '' }}
 
       - name: Rename artifacts
         run: |
