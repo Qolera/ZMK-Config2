@@ -1,5 +1,4 @@
-target_sources(app PRIVATE 
+target_sources_ifdef(CONFIG_ZMK_POINTING app PRIVATE 
     src/automouse_layer.c
-    src/zmk_automouse.c
 )
 target_include_directories(app PRIVATE include)

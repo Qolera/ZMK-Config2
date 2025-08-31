@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+#include <zephyr/kernel.h>
 #include <zmk/keymap.h>
 #include <automouse.h>
 
@@ -21,3 +22,11 @@ void activate_automouse_layer(void) {
 void deactivate_automouse_layer(void) {
     zmk_keymap_layer_deactivate(LAYER_AUTOMOUSE);
 }
+
+// Force linking by having an init function
+static int automouse_init(void) {
+    // This forces the object file to be linked
+    return 0;
+}
+
+SYS_INIT(automouse_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
