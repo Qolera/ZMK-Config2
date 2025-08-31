@@ -9,19 +9,19 @@
         status = "okay";
     };
 
-    /* Trackball using custom driver */
+    /* Trackball using custom driver - disabled until build.yaml is used
     pim447_trackball: trackball@a {
         compatible = "pimoroni,pim447-custom";
         reg = <0x0a>;
         status = "okay";
         int-gpios = <&pro_micro 4 GPIO_ACTIVE_LOW>;
-    };
+    }; */
 };
 
 / {
     /* Indicar a ZMK que este es el pointing device */
     chosen {
-        zmk,pointing-device = &pim447_trackball;
+        /* zmk,pointing-device = &pim447_trackball; // Disabled until build.yaml is used */
         zephyr,display = &pro_micro_ssd1306;
     };
 };
