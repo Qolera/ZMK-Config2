@@ -60,7 +60,7 @@
         chain-length = <29>;
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
-        color-mapping = <LED_COOR_ID_GREEN
+        color-mapping = <LED_COLOR_ID_GREEN
                         LED_COLOR_ID_RED
                         LED_COLOR_ID_BLUE>;
     };
@@ -79,14 +79,11 @@
     // Importante: velocidad máxima 250kHz para el Pimoroni
     clock-frequency = <250000>;
     
-    pim447_trackball: pim447@a {
-        compatible = "pimoroni,pim447";
+    // Dispositivo genérico I2C para el trackball (usaremos input listener)
+    trackball: trackball@a {
+        compatible = "zmk,i2c-generic";
         reg = <0x0a>;
-        label = "PIM447_TRACKBALL";
-        
-        // Pin de interrupción (opcional, ajusta según tu conexión)
-        // Si no usas interrupciones, comenta esta línea
-        // int-gpios = <&gpio0 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        label = "TRACKBALL";
     };
 };
 

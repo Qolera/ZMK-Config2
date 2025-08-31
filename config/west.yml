@@ -4,13 +4,10 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: mctechnology17
       url-base: https://github.com/mctechnology17
-    - name: cdc-mkb
-      url-base: https://github.com/cdc-mkb
   projects:
-    # Usamos el fork de cdc-mkb que tiene soporte para Pimoroni
     - name: zmk
-      remote: cdc-mkb
-      revision: mouse-pim447
+      remote: zmkfirmware
+      revision: main
       import: app/west.yml
     - name: zmk-nice-oled
       remote: mctechnology17
