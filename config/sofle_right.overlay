@@ -5,7 +5,7 @@
     status = "okay";
 
     /* OLED display for nice_oled shield */
-    ssd1306@3c {
+    ssd1306: ssd1306@3c {
         status = "okay";
     };
 
@@ -22,6 +22,6 @@
     /* Indicar a ZMK que este es el pointing device */
     chosen {
         zmk,pointing-device = &pim447_trackball;
-        zephyr,display = &pro_micro_ssd1306;
+        zephyr,display = &ssd1306;
     };
 };
