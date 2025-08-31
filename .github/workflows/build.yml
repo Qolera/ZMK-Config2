@@ -5,10 +5,14 @@ on:
     paths:
       - ".github/workflows/build.yml"
       - "app/**"
+      - "config/**"
+      - "build.yaml"
   pull_request:
     paths:
       - ".github/workflows/build.yml"
       - "app/**"
+      - "config/**"
+      - "build.yaml"
 
 jobs:
   build:
