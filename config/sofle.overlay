@@ -1,41 +1,28 @@
-/*
- * Configuración mínima para Pimoroni Trackball
- */
-
-#include <dt-bindings/led/led.h>
-
-&pinctrl {
-    i2c0_default: i2c0_default {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
-            bias-pull-up;
-        };
-    };
-    
-    i2c0_sleep: i2c0_sleep {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
-            low-power-enable;
-            bias-pull-up;
-        };
-    };
-};
+#include <dt-bindings/zmk/trackball_pim447.h>
 
 &i2c0 {
-    compatible = "nordic,nrf-twim";
     status = "okay";
-    pinctrl-0 = <&i2c0_default>;
-    pinctrl-1 = <&i2c0_sleep>;
-    pinctrl-names = "default", "sleep";
     
-    clock-frequency = <250000>;
-    
-    trackball: pim447@a {
-        compatible = "pim447";
-        reg = <0x0a>;
+    pim447_trackball@a {
+        compatible = "pimoroni,trackball_pim447";
+        reg = <0xa>;
         label = "PIM447_TRACKBALL";
-        status = "okay";
+        swap-axes;
+        invert-move-x;
+        power-layer = <0>; /* MOUSE layer */
+        
+        mode = <PIM447_MOVE>;        // default: PIM447_MOVE for mouse move
+        move-factor-x = <200>;       // Sensitivity X; default: 100
+        move-factor-y = <200>;       // Sensitivity Y; default: 100
+        move-inertia-x = <90>;       // Inertia X
+        move-inertia-y = <90>;       // Inertia Y
+        norm = <PIM447_NORM_EUCLID>; // Metric for 2d distance
+        exactness = <5>;             // Range of small velocities
+        max-accel = <200>;           // Maximum acceleration
+        scroll-divisor-x = <1>;      // Increase wheel velocity
+        scroll-divisor-y = <1>;      // Increase wheel velocity
+        invert-scroll-x;             // Invert wheel X axis
+        button = <0>;                // Mouse button on press
+        poll-interval = <10>;        // Poll interval in ms
     };
 };

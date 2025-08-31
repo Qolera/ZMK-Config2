@@ -1,4 +1,4 @@
 include:
   - board: nice_nano_v2
-    shield: sofle_left
-    cmake-args: -DCONFIG_ZMK_MOUSE=y
+    shield: sofle_right
+    cmake-args: -DZMK_CONFIG=/github/workspace/config -DCONFIG_ZMK_MOUSE=y -DCONFIG_ZMK_TRACKBALL_PIM447=y
