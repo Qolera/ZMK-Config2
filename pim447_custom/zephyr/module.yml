@@ -2,6 +2,6 @@ name: pimoroni_pim447
 build:
   cmake: .
   kconfig: Kconfig
-dts:
-  bindings: dts/bindings
-  vendor-prefixes: dts/bindings/vendor-prefixes.txt
+  dts:
+    bindings: dts/bindings
+    vendor-prefixes: dts/bindings/vendor-prefixes.txt
