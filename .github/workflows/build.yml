@@ -1,0 +1,51 @@
+name: ZMK Build
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: West Init
+        run: west init -l config
+        
+      - name: West Update
+        run: west update
+        
+      - name: West Zephyr export
+        run: west zephyr-export
+        
+      - name: Build LEFT (with PIM447)
+        run: |
+          west build -s zmk/app -b nice_nano_v2 -d build/left -- \
+            -DSHIELD="sofle_left" \
+            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        
+      - name: Build RIGHT (with OLED)
+        run: |
+          west build -s zmk/app -b nice_nano_v2 -d build/right -- \
+            -DSHIELD="sofle_right nice_oled" \
+            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        
+      - name: Verify PIM447
+        run: |
+          echo "=== Verificando PIM447 ==="
+          if [ -f build/left/zephyr/zephyr.dts ]; then
+            grep -n "pim447" build/left/zephyr/zephyr.dts && echo "✅ PIM447 encontrado" || echo "❌ PIM447 no encontrado"
+          else
+            echo "DTS file not found"
+          fi
+        
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: |
+            build/left/zephyr/zmk.uf2
+            build/right/zephyr/zmk.uf2

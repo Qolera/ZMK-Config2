@@ -1,0 +1,13 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: cdc-mkb
+      url-base: https://github.com/cdc-mkb
+  projects:
+    - name: zmk
+      remote: cdc-mkb
+      revision: main
+      import: app/west.yml
+  self:
+    path: config
