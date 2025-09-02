@@ -23,7 +23,7 @@ jobs:
         run: |
           apt-get update
           apt-get install -y python3-pip
-          pip3 install packaging --break-system-packages
+          pip3 install packaging
           # Buscar y parchear el archivo en cualquier ubicación
           find . -name "gen_kobject_list.py" -type f -exec sed -i 's/from distutils.version import LooseVersion/from packaging.version import Version as LooseVersion/' {} \;
         
