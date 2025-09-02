@@ -47,6 +47,13 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
         
+      - name: Debug - Check overlays
+        run: |
+          echo "=== Overlays encontrados ==="
+          find ${GITHUB_WORKSPACE}/config -name "*.overlay" -type f
+          echo "=== Contenido del overlay sofle ==="
+          cat ${GITHUB_WORKSPACE}/config/boards/shields/sofle/sofle.overlay || true
+
       - name: Build LEFT (with PIM447)
         run: |
           west build -s zmk/app -b nice_nano_v2 -d build/left -- \
