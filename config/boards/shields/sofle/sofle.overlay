@@ -50,6 +50,7 @@
         reg = <0x0a>;   /* Dirección I2C del PIM447 */
         label = "PIM447_TRACKBALL";
         drdy-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;  /* si tu driver pin de interrupción es el 2 */
+        mode = <1>;     /* Modo de operación del trackball */
         status = "okay";
     };
 };
