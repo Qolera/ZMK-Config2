@@ -9,6 +9,8 @@ jobs:
       image: zmkfirmware/zmk-build-arm:stable
     
     steps:
+      - name: Clean workspace cache
+        run: echo "CACHE_BUSTER=$(date +%s)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
         
