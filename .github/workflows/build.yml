@@ -12,12 +12,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Debug repo layout
+        run: |
+          pwd
+          ls -R | grep gen_kobject_list.py || true
+
       - name: Fix Python distutils issue
         run: |
           apt-get update
           apt-get install -y python3-pip
           pip3 install packaging --break-system-packages
-          sed -i 's/from distutils.version import LooseVersion/from packaging.version import Version as LooseVersion/' zephyr/scripts/gen_kobject_list.py
+          find . -name "gen_kobject_list.py" -type f
         
       - name: Clean zmk folder
         run: rm -rf zmk
