@@ -43,11 +43,14 @@ jobs:
           cp config/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
           echo "✅ Binding YAML copiado"
           
-          echo "=== Parcheando driver para quitar mode ==="
-          # Buscar y parchear el driver para quitar la referencia a DT_PROP(..., mode)
+          echo "=== Parcheando driver para Zephyr 3+ ==="
+          # Buscar y parchear el driver para Zephyr moderno
           if [ -f zmk/app/src/mouse/trackball_pim447.c ]; then
+            # Parche 1: Quitar DT_PROP para mode
             sed -i 's/static int mode = DT_PROP(DT_INST(0, pimoroni_trackball_pim447), mode);/static int mode = 0; \/\* default mode *\//' zmk/app/src/mouse/trackball_pim447.c
-            echo "✅ Driver parcheado - mode hardcodeado a 0"
+            # Parche 2: Quitar DT_LABEL obsoleto
+            sed -i 's/const char \*label = DT_LABEL(DT_INST(0, pimoroni_trackball_pim447));/const char *label = "PIM447_TRACKBALL"; \/\* hardcoded for Zephyr 3+ *\//' zmk/app/src/mouse/trackball_pim447.c
+            echo "✅ Driver parcheado para Zephyr 3+ (mode=0, label hardcodeado)"
           else
             echo "⚠️  Driver no encontrado, puede que falle la compilación"
           fi
