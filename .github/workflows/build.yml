@@ -75,7 +75,11 @@ jobs:
             sed -i 's/DT_INST_REG_ADDR(0)/0x0a/' zmk/app/src/mouse/trackball_pim447.c
             sed -i 's/DT_INST_REG_ADDR(0)/0x0a/' zmk/app/drivers/sensor/trackball_pim447/trackball_pim447.c 2>/dev/null || echo "⚠️  Driver sensor no encontrado, continuando..."
 
-            echo "✅ Driver parcheado para Zephyr 2.5 (mode=0, label, booleanos=0, move_factor=1, scroll_divisor=2, i2c_addr=0x0a)"
+            # Parche para bus I2C hardcodeado (Zephyr 2.5 compatibility)
+            sed -i 's/DT_INST_BUS_LABEL(0)/"I2C_0"/' zmk/app/src/mouse/trackball_pim447.c
+            sed -i 's/DT_INST_BUS_LABEL(0)/"I2C_0"/' zmk/app/drivers/sensor/trackball_pim447/trackball_pim447.c 2>/dev/null || echo "⚠️  Driver sensor no encontrado, continuando..."
+
+            echo "✅ Driver parcheado para Zephyr 2.5 (mode=0, label, booleanos=0, move_factor=1, scroll_divisor=2, i2c_addr=0x0a, i2c_bus=I2C_0)"
           else
             echo "⚠️  Driver no encontrado, puede que falle la compilación"
           fi
