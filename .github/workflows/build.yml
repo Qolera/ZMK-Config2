@@ -12,6 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Install python3-distutils
+        run: |
+          apt-get update
+          apt-get install -y python3-distutils
+        
       - name: Clean zmk folder
         run: rm -rf zmk
         
