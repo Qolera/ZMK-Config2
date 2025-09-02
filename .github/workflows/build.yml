@@ -140,7 +140,7 @@ jobs:
       - name: Build RIGHT (with OLED)
         run: |
           west build -s zmk/app -b nice_nano_v2 -d build/right -- \
-            -DSHIELD="sofle_right;nice_oled" \
+            -DSHIELD="sofle_right" \
             -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
         
       - name: Verify PIM447
