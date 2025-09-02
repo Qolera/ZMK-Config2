@@ -12,12 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install Python 3.11
+      - name: Patch Zephyr script for distutils removal
         run: |
-          apt-get update
-          apt-get install -y python3.11 python3.11-venv
-          update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
-          python3 --version
+          pip install packaging
+          sed -i 's/from distutils.version import LooseVersion/from packaging.version import Version as LooseVersion/' zephyr/scripts/gen_kobject_list.py
         
       - name: Clean zmk folder
         run: rm -rf zmk
