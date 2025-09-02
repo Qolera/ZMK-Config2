@@ -12,10 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install python3-distutils
+      - name: Install python3.12-venv
         run: |
           apt-get update
-          apt-get install -y python3-distutils
+          apt-get install -y python3.12-venv
         
       - name: Clean zmk folder
         run: rm -rf zmk
