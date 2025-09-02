@@ -36,6 +36,13 @@ jobs:
       - name: West Update
         run: west update
         
+      - name: Patch PIM447 bindings
+        run: |
+          echo "=== Copiando binding YAML ==="
+          mkdir -p zmk/app/dts/bindings/sensor/
+          cp config/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
+          echo "✅ Binding YAML copiado"
+        
       - name: Verify ZMK custom files
         run: |
           echo "=== Verificando archivos personalizados ==="
