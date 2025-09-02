@@ -12,11 +12,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Clean zmk folder
+        run: rm -rf zmk
+        
       - name: West Init
         run: west init -l config
         
       - name: West Update
         run: west update
+        
+      - name: Debug - Check ZMK remote
+        run: |
+          cd zmk
+          git remote -v
+          git rev-parse --abbrev-ref HEAD
+        
+      - name: Debug - Check for PIM447 driver
+        run: |
+          ls -R zmk/drivers | grep pim447 || echo "PIM447 driver not found"
         
       - name: West Zephyr export
         run: west zephyr-export
