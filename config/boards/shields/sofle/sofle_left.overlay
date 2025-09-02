@@ -50,7 +50,6 @@
         reg = <0x0a>;
         label = "PIM447_TRACKBALL";
         drdy-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-        mode = <PIM447_MOVE>;   /* O PIM447_SCROLL si quieres arrancar en scroll */
         status = "okay";
     };
 };

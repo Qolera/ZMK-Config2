@@ -36,12 +36,21 @@ jobs:
       - name: West Update
         run: west update
         
-      - name: Patch PIM447 bindings
+      - name: Patch PIM447 bindings and driver
         run: |
           echo "=== Copiando binding YAML ==="
           mkdir -p zmk/app/dts/bindings/sensor/
           cp config/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
           echo "✅ Binding YAML copiado"
+          
+          echo "=== Parcheando driver para quitar mode ==="
+          # Buscar y parchear el driver para quitar la referencia a DT_PROP(..., mode)
+          if [ -f zmk/app/src/mouse/trackball_pim447.c ]; then
+            sed -i 's/static int mode = DT_PROP(DT_INST(0, pimoroni_trackball_pim447), mode);/static int mode = 0; \/\* default mode *\//' zmk/app/src/mouse/trackball_pim447.c
+            echo "✅ Driver parcheado - mode hardcodeado a 0"
+          else
+            echo "⚠️  Driver no encontrado, puede que falle la compilación"
+          fi
         
       - name: Verify ZMK custom files
         run: |
