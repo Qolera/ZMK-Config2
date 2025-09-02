@@ -12,14 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install pip
+      - name: Install pip + packaging and patch Zephyr
         run: |
           apt-get update
           apt-get install -y python3-pip
-
-      - name: Patch Zephyr script for distutils removal
-        run: |
-          pip3 install packaging
+          pip3 install packaging --break-system-packages
           sed -i 's/from distutils.version import LooseVersion/from packaging.version import Version as LooseVersion/' zephyr/scripts/gen_kobject_list.py
         
       - name: Clean zmk folder
