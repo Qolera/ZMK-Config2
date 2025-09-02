@@ -54,13 +54,15 @@ jobs:
             # Parchear booleanos
             sed -i 's/#define SWAP_AXES DT_PROP(DT_INST(0, pimoroni_trackball_pim447), swap_axes)/#define SWAP_AXES 0/' zmk/app/src/mouse/trackball_pim447.c
             sed -i 's/#define INVERT_MOVE_X DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_move_x)/#define INVERT_MOVE_X 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define MOVE_X_INVERT DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_move_x)/#define MOVE_X_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
             sed -i 's/#define INVERT_MOVE_Y DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_move_y)/#define INVERT_MOVE_Y 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define MOVE_Y_INVERT DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_move_y)/#define MOVE_Y_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
             sed -i 's/#define INVERT_SCROLL_X DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_scroll_x)/#define INVERT_SCROLL_X 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define SCROLL_X_INVERT DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_scroll_x)/#define SCROLL_X_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
             sed -i 's/#define INVERT_SCROLL_Y DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_scroll_y)/#define INVERT_SCROLL_Y 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define SCROLL_Y_INVERT DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_scroll_y)/#define SCROLL_Y_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
+            
+            # Propiedades booleanas -> hardcode a 0 (patrón amplio)
+            sed -i 's/#define MOVE_X_INVERT.*/#define MOVE_X_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
+            sed -i 's/#define MOVE_Y_INVERT.*/#define MOVE_Y_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
+            sed -i 's/#define SCROLL_X_INVERT.*/#define SCROLL_X_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
+            sed -i 's/#define SCROLL_Y_INVERT.*/#define SCROLL_Y_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
             
             # Parchear int properties
             sed -i 's/#define MOVE_FACTOR.*DT_PROP(DT_INST(0, pimoroni_trackball_pim447), move_factor)/#define MOVE_FACTOR 1/' zmk/app/src/mouse/trackball_pim447.c
