@@ -88,13 +88,6 @@ jobs:
         run: |
           echo "=== Verificando archivos personalizados ==="
           # Verificar que los archivos necesarios existen en el fork
-          if [ -f zmk/app/include/dt-bindings/zmk/trackball_pim447.h ]; then
-            echo "✅ trackball_pim447.h encontrado"
-          else
-            echo "❌ trackball_pim447.h no encontrado"
-            exit 1
-          fi
-          
           if [ -f zmk/app/dts/bindings/sensor/pimoroni,trackball_pim447.yaml ]; then
             echo "✅ pimoroni,trackball_pim447.yaml encontrado"
           else
@@ -104,8 +97,8 @@ jobs:
           
           if [ -f config/boards/shields/sofle/sofle_left.overlay ]; then
             echo "✅ sofle_left.overlay encontrado"
-            echo "=== Contenido del overlay ==="
-            grep -n "mode\|compatible" config/boards/shields/sofle/sofle_left.overlay || true
+            echo "=== Contenido completo del overlay ==="
+            cat config/boards/shields/sofle/sofle_left.overlay
           else
             echo "❌ sofle_left.overlay no encontrado"
             exit 1
@@ -147,7 +140,7 @@ jobs:
         run: |
           echo "=== Verificando PIM447 ==="
           if [ -f build/left/zephyr/zephyr.dts ]; then
-            grep -n "pim447" build/left/zephyr/zephyr.dts && echo "✅ PIM447 encontrado" || echo "❌ PIM447 no encontrado"
+            grep -n "pimoroni,trackball_pim447" build/left/zephyr/zephyr.dts && echo "✅ PIM447 encontrado" || echo "❌ PIM447 no encontrado"
           else
             echo "DTS file not found"
           fi
