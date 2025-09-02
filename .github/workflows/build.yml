@@ -44,7 +44,7 @@ jobs:
           cd zephyr-sdk-0.16.1
           ./setup.sh -t arm-zephyr-eabi
           cd ..
-          echo "ZEPHYR_SDK_INSTALL_DIR=\"\${GITHUB_WORKSPACE}/zephyr-sdk-0.16.1\"" >> $GITHUB_ENV
+          echo "ZEPHYR_SDK_INSTALL_DIR=${GITHUB_WORKSPACE}/zephyr-sdk-0.16.1" >> $GITHUB_ENV
         
       - name: Patch PIM447 bindings and driver
         run: |
