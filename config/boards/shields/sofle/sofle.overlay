@@ -1,4 +1,4 @@
-#include <dt-bindings/zmk/trackball_pim447.h>
+#include <dt-bindings/zmk/trackball.h>
 
 / {
     chosen {
@@ -47,10 +47,10 @@
 
     pim447: trackball@0a {
         compatible = "pimoroni,trackball_pim447";
-        reg = <0x0a>;   /* Dirección I2C del PIM447 */
+        reg = <0x0a>;
         label = "PIM447_TRACKBALL";
-        drdy-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;  /* si tu driver pin de interrupción es el 2 */
-        mode = <PIM447_MOVE>;   /* PIM447_MOVE o PIM447_SCROLL */
+        drdy-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+        mode = <PIM447_MOVE>;   /* O PIM447_SCROLL si quieres arrancar en scroll */
         status = "okay";
     };
 };
