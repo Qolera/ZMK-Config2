@@ -41,6 +41,8 @@ jobs:
           echo "=== Aplicando cambios locales al fork ==="
           cp -r ${GITHUB_WORKSPACE}/zmk/app/include/dt-bindings/zmk/trackball_pim447.h zmk/app/include/dt-bindings/zmk/
           cp ${GITHUB_WORKSPACE}/zmk/app/boards/shields/sofle/sofle_left.overlay zmk/app/boards/shields/sofle/
+          mkdir -p zmk/app/dts/bindings/sensor/
+          cp ${GITHUB_WORKSPACE}/zmk/app/dts/bindings/sensor/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
           echo "✅ Cambios aplicados"
         
       - name: Debug - Check ZMK remote
