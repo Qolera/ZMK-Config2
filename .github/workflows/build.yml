@@ -34,6 +34,13 @@ jobs:
       - name: West Update
         run: west update
         
+      - name: Apply local ZMK changes
+        run: |
+          echo "=== Aplicando cambios locales al fork ==="
+          cp -r ${GITHUB_WORKSPACE}/zmk/app/include/dt-bindings/zmk/trackball_pim447.h zmk/app/include/dt-bindings/zmk/
+          cp ${GITHUB_WORKSPACE}/zmk/app/boards/shields/sofle/sofle_left.overlay zmk/app/boards/shields/sofle/
+          echo "✅ Cambios aplicados"
+        
       - name: Debug - Check ZMK remote
         run: |
           cd zmk
