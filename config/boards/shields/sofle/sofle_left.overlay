@@ -52,5 +52,8 @@
         drdy-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
         swap-axes;
         status = "okay";
+        
+        // Props para que ZMK lo detecte
+        zephyr,sensor = "pim447";
     };
 };
