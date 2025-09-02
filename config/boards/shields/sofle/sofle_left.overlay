@@ -50,6 +50,7 @@
         reg = <0x0a>;
         label = "PIM447_TRACKBALL";
         drdy-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+        swap-axes;
         status = "okay";
     };
 };
