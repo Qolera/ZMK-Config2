@@ -43,46 +43,15 @@ jobs:
           cp config/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
           echo "✅ Binding YAML copiado"
 
-          echo "=== Parcheando driver para Zephyr 2.5 ==="
-          if [ -f zmk/app/src/mouse/trackball_pim447.c ]; then
-            # Parchear mode
-            sed -i 's/static int mode = DT_PROP(DT_INST(0, pimoroni_trackball_pim447), mode);/static int mode = 0; \/\* default mode *\//' zmk/app/src/mouse/trackball_pim447.c
-            
-            # Parchear label
-            sed -i 's/const char \*label = DT_LABEL(DT_INST(0, pimoroni_trackball_pim447));/const char *label = "PIM447_TRACKBALL"; \/\* hardcoded *\//' zmk/app/src/mouse/trackball_pim447.c
-            
-            # Parchear booleanos
-            sed -i 's/#define SWAP_AXES DT_PROP(DT_INST(0, pimoroni_trackball_pim447), swap_axes)/#define SWAP_AXES 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define INVERT_MOVE_X DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_move_x)/#define INVERT_MOVE_X 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define INVERT_MOVE_Y DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_move_y)/#define INVERT_MOVE_Y 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define INVERT_SCROLL_X DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_scroll_x)/#define INVERT_SCROLL_X 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define INVERT_SCROLL_Y DT_PROP(DT_INST(0, pimoroni_trackball_pim447), invert_scroll_y)/#define INVERT_SCROLL_Y 0/' zmk/app/src/mouse/trackball_pim447.c
-            
-            # Propiedades booleanas -> hardcode a 0 (patrón amplio)
-            sed -i 's/#define MOVE_X_INVERT.*/#define MOVE_X_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define MOVE_Y_INVERT.*/#define MOVE_Y_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define SCROLL_X_INVERT.*/#define SCROLL_X_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define SCROLL_Y_INVERT.*/#define SCROLL_Y_INVERT 0/' zmk/app/src/mouse/trackball_pim447.c
-            
-            # Parchear int properties
-            sed -i 's/#define MOVE_FACTOR.*DT_PROP(DT_INST(0, pimoroni_trackball_pim447), move_factor)/#define MOVE_FACTOR 1/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/#define SCROLL_DIVISOR.*DT_PROP(DT_INST(0, pimoroni_trackball_pim447), scroll_divisor)/#define SCROLL_DIVISOR 2/' zmk/app/src/mouse/trackball_pim447.c
-
-            # Parche extra: eliminar DT_PROP para button
-            sed -i 's/#define BUTTON.*/#define BUTTON 0/' zmk/app/src/mouse/trackball_pim447.c
-
-            # Parche para dirección I2C hardcodeada (Zephyr 2.5 compatibility)
-            sed -i 's/DT_INST_REG_ADDR(0)/0x0a/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/DT_INST_REG_ADDR(0)/0x0a/' zmk/app/drivers/sensor/trackball_pim447/trackball_pim447.c 2>/dev/null || echo "⚠️  Driver sensor no encontrado, continuando..."
-
-            # Parche para bus I2C hardcodeado (Zephyr 2.5 compatibility)
-            sed -i 's/DT_INST_BUS_LABEL(0)/"I2C_0"/' zmk/app/src/mouse/trackball_pim447.c
-            sed -i 's/DT_INST_BUS_LABEL(0)/"I2C_0"/' zmk/app/drivers/sensor/trackball_pim447/trackball_pim447.c 2>/dev/null || echo "⚠️  Driver sensor no encontrado, continuando..."
-
-            echo "✅ Driver parcheado para Zephyr 2.5 (mode=0, label, booleanos=0, move_factor=1, scroll_divisor=2, i2c_addr=0x0a, i2c_bus=I2C_0)"
-          else
-            echo "⚠️  Driver no encontrado, puede que falle la compilación"
-          fi
+          echo "=== Verificando drivers PIM447 ==="
+          echo "Buscando drivers en zmk/app/..."
+          find ./zmk -name "*pim447*" -o -name "*trackball*" -type f
+          
+          echo "=== Directorios de drivers existentes ==="
+          find ./zmk -name "src" -o -name "drivers" -type d
+          
+          echo "⚠️  Drivers PIM447 no encontrados - el trackball no funcionará"
+          echo "Se necesita agregar manualmente los archivos trackball_pim447.c al fork de ZMK"
         
       - name: Verify ZMK custom files
         run: |
