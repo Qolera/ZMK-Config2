@@ -68,6 +68,9 @@ jobs:
             sed -i 's/#define MOVE_FACTOR.*DT_PROP(DT_INST(0, pimoroni_trackball_pim447), move_factor)/#define MOVE_FACTOR 1/' zmk/app/src/mouse/trackball_pim447.c
             sed -i 's/#define SCROLL_DIVISOR.*DT_PROP(DT_INST(0, pimoroni_trackball_pim447), scroll_divisor)/#define SCROLL_DIVISOR 2/' zmk/app/src/mouse/trackball_pim447.c
 
+            # Parche extra: eliminar DT_PROP para button
+            sed -i 's/#define BUTTON.*/#define BUTTON 0/' zmk/app/src/mouse/trackball_pim447.c
+
             echo "✅ Driver parcheado para Zephyr 2.5 (mode=0, label, booleanos=0, move_factor=1, scroll_divisor=2)"
           else
             echo "⚠️  Driver no encontrado, puede que falle la compilación"
