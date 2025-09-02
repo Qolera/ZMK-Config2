@@ -36,14 +36,32 @@ jobs:
       - name: West Update
         run: west update
         
-      - name: Apply local ZMK changes
+      - name: Verify ZMK custom files
         run: |
-          echo "=== Aplicando cambios locales al fork ==="
-          cp -r ${GITHUB_WORKSPACE}/zmk/app/include/dt-bindings/zmk/trackball_pim447.h zmk/app/include/dt-bindings/zmk/
-          cp ${GITHUB_WORKSPACE}/zmk/app/boards/shields/sofle/sofle_left.overlay zmk/app/boards/shields/sofle/
-          mkdir -p zmk/app/dts/bindings/sensor/
-          cp ${GITHUB_WORKSPACE}/zmk/app/dts/bindings/sensor/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
-          echo "✅ Cambios aplicados"
+          echo "=== Verificando archivos personalizados ==="
+          # Verificar que los archivos necesarios existen en el fork
+          if [ -f zmk/app/include/dt-bindings/zmk/trackball_pim447.h ]; then
+            echo "✅ trackball_pim447.h encontrado"
+          else
+            echo "❌ trackball_pim447.h no encontrado"
+            exit 1
+          fi
+          
+          if [ -f zmk/app/dts/bindings/sensor/pimoroni,trackball_pim447.yaml ]; then
+            echo "✅ pimoroni,trackball_pim447.yaml encontrado"
+          else
+            echo "❌ pimoroni,trackball_pim447.yaml no encontrado"
+            exit 1
+          fi
+          
+          if [ -f zmk/app/boards/shields/sofle/sofle_left.overlay ]; then
+            echo "✅ sofle_left.overlay encontrado"
+            echo "=== Contenido del overlay ==="
+            grep -n "mode\|compatible" zmk/app/boards/shields/sofle/sofle_left.overlay
+          else
+            echo "❌ sofle_left.overlay no encontrado"
+            exit 1
+          fi
         
       - name: Debug - Check ZMK remote
         run: |
