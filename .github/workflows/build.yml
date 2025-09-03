@@ -20,8 +20,9 @@ jobs:
             make gcc gcc-multilib g++-multilib libsdl2-dev
           
           pip3 install --upgrade pip wheel setuptools
-          pip3 install --no-deps west
-          pip3 install pyelftools pyyaml
+          # Instalar docopt compatible primero
+          pip3 install "docopt<=0.6.3"
+          pip3 install west pyelftools pyyaml
           
       - name: Setup Zephyr environment
         run: |
