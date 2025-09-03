@@ -20,7 +20,7 @@ jobs:
             make gcc gcc-multilib g++-multilib libsdl2-dev
           
           pip3 install --upgrade pip wheel setuptools
-          pip3 install pyelftools pyyaml pykwalify west click colorama
+          pip3 install pyelftools pyyaml west click colorama
           
       - name: Setup Zephyr environment
         run: |
