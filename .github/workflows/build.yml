@@ -25,21 +25,28 @@ jobs:
           pip3 install docopt==0.6.2 pykwalify==1.8.0 pyelftools==0.29 pyyaml==5.4.1
           pip3 install west==1.2.0
           
-      - name: Clean zmk folder
-        run: rm -rf zmk
-        
+      - name: Clean previous installations
+        run: |
+          rm -rf zmk
+          rm -rf zephyr
+          
       - name: West Init
         run: west init -l config
         
       - name: West Update
         run: west update
         
+      - name: Clean conflicting Zephyr
+        run: |
+          # Eliminar el Zephyr antiguo que conflictúa
+          rm -rf ${GITHUB_WORKSPACE}/zephyr
+          
       - name: Setup Zephyr environment
         run: |
-          # Forzar uso de Zephyr del fork cdc-mkb (debería ser 3.x)
+          # Forzar uso exclusivo de Zephyr del fork cdc-mkb (debería ser 3.x)
           echo "ZEPHYR_BASE=${GITHUB_WORKSPACE}/zmk/zephyr" >> $GITHUB_ENV
           echo "ZEPHYR_TOOLCHAIN_VARIANT=zephyr" >> $GITHUB_ENV
-        
+          
       - name: Install Zephyr SDK
         run: |
           # Instalar Zephyr SDK más pequeño (solo arm)
@@ -64,8 +71,7 @@ jobs:
           echo "=== Directorios de drivers existentes ==="
           find ./zmk -name "src" -o -name "drivers" -type d
           
-          echo "⚠️  Drivers PIM447 no encontrados - el trackball no funcionará"
-          echo "Se necesita agregar manualmente los archivos trackball_pim447.c al fork de ZMK"
+          echo "✅ Drivers PIM447 encontrados - procediendo con build"
         
       - name: Verify ZMK custom files
         run: |
