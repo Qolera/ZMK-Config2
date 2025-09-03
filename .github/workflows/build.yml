@@ -19,10 +19,11 @@ jobs:
             python3-dev python3-pip python3-setuptools python3-tk python3-wheel xz-utils file \
             make gcc gcc-multilib g++-multilib libsdl2-dev
           
-          pip3 install --upgrade pip wheel setuptools
-          # Instalar docopt compatible primero
-          pip3 install "docopt<=0.6.3"
-          pip3 install west pyelftools pyyaml
+          # Downgrade pip/setuptools/wheel para compatibilidad con docopt
+          pip3 install --upgrade pip==21.3.1 setuptools==59.6.0 wheel==0.37.1
+          # Instalar dependencias compatibles
+          pip3 install docopt==0.6.2 pykwalify==1.8.0 pyelftools==0.29 pyyaml==5.4.1
+          pip3 install west==1.2.0
           
       - name: Setup Zephyr environment
         run: |
