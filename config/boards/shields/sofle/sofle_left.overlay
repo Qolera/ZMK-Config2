@@ -1,10 +1,10 @@
-#include <dt-bindings/zmk/trackball_pim447.h>
+// config/boards/shields/sofle/sofle_left.overlay
 
 / {
     chosen {
         zmk,kscan = &kscan0;
         zmk,matrix_transform = &default_transform;
-        zmk,pointing-device = &pim447;
+        // Nota: El fork de cdc_mkb podría no usar zmk,pointing-device
     };
 
     kscan0: kscan {
@@ -41,19 +41,14 @@
     };
 };
 
-/* Trackball PIM447 en bus I2C0 */
+/* Trackball PIM447 en bus I2C0 - usando los nombres correctos del fork cdc_mkb */
 &i2c0 {
     status = "okay";
-
-    pim447: trackball@0a {
-        compatible = "pimoroni,trackball_pim447";
-        reg = <0x0a>;
+    
+    /* IMPORTANTE: Usar el nombre correcto del fork cdc_mkb */
+    pim447_trackball@a {
+        compatible = "pimoroni,pim447_trackball";  /* Con guión bajo, no guión */
+        reg = <0xa>;  /* Dirección I2C 0x0A */
         label = "PIM447_TRACKBALL";
-        drdy-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
-        swap-axes;
-        status = "okay";
-        
-        // Props para que ZMK lo detecte
-        zephyr,sensor = "pim447";
     };
 };

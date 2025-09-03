@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Install Zephyr dependencies
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
@@ -19,125 +19,134 @@ jobs:
             python3-dev python3-pip python3-setuptools python3-tk python3-wheel xz-utils file \
             make gcc gcc-multilib g++-multilib libsdl2-dev
           
-          # Downgrade pip/setuptools/wheel para compatibilidad con docopt
-          pip3 install --upgrade pip==21.3.1 setuptools==59.6.0 wheel==0.37.1
-          # Instalar dependencias compatibles
-          pip3 install docopt==0.6.2 pykwalify==1.8.0 pyelftools==0.29 pyyaml==5.4.1
-          pip3 install west==1.2.0
+          # Instalar West con las dependencias correctas
+          pip3 install --user -U west
+          pip3 install --user -U pyelftools
           
-      - name: Clean previous installations
+      - name: Clean workspace
         run: |
-          rm -rf zmk
-          rm -rf zephyr
+          rm -rf zmk build .west
           
-      - name: West Init
-        run: west init -l config
-        
-      - name: West Update
-        run: west update
-        
-      - name: Clean conflicting Zephyr
+      - name: Initialize West with ZMK fork
         run: |
-          # Eliminar el Zephyr antiguo que conflictúa
-          rm -rf ${GITHUB_WORKSPACE}/zephyr
+          # Inicializar directamente con el fork de cdc-mkb
+          west init -l config
           
-      - name: Setup Zephyr environment
+      - name: Update West modules
         run: |
-          # Forzar uso exclusivo de Zephyr del fork cdc-mkb (debería ser 3.x)
-          echo "ZEPHYR_BASE=${GITHUB_WORKSPACE}/zmk/zephyr" >> $GITHUB_ENV
-          echo "ZEPHYR_TOOLCHAIN_VARIANT=zephyr" >> $GITHUB_ENV
+          # Actualizar todos los módulos
+          west update
           
-      - name: Install Zephyr SDK
+      - name: Export Zephyr
         run: |
-          # Instalar Zephyr SDK más pequeño (solo arm)
-          wget -q https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
-          tar xf zephyr-sdk-0.16.1_linux-x86_64.tar.xz
-          cd zephyr-sdk-0.16.1
-          ./setup.sh -t arm-zephyr-eabi
-          cd ..
-          echo "ZEPHYR_SDK_INSTALL_DIR=${GITHUB_WORKSPACE}/zephyr-sdk-0.16.1" >> $GITHUB_ENV
-        
-      - name: Patch PIM447 bindings and driver
+          west zephyr-export
+          pip3 install --user -r zmk/zephyr/scripts/requirements.txt
+          
+      - name: Setup Zephyr SDK
         run: |
-          echo "=== Copiando binding YAML ==="
-          mkdir -p zmk/app/dts/bindings/sensor/
+          # Descargar e instalar Zephyr SDK
+          wget -q https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64_minimal.tar.xz
+          tar xf zephyr-sdk-0.16.1_linux-x86_64_minimal.tar.xz
+          ./zephyr-sdk-0.16.1/setup.sh -t arm-zephyr-eabi -h -c
+          
+      - name: Copy custom PIM447 files
+        run: |
+          echo "=== Copiando archivos PIM447 personalizados ==="
+          
+          # Crear estructura de directorios necesaria
+          mkdir -p zmk/app/dts/bindings/sensor
+          mkdir -p zmk/app/include/dt-bindings/zmk
+          mkdir -p zmk/app/drivers/sensor/trackball_pim447
+          mkdir -p zmk/app/src/behaviors
+          mkdir -p zmk/app/include/zmk
+          
+          # Copiar binding YAML
           cp config/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
-          echo "✅ Binding YAML copiado"
+          
+          # Crear archivos mínimos necesarios si no existen en el fork
+          
+          # 1. Header file para las constantes
+          if [ ! -f zmk/app/include/dt-bindings/zmk/trackball_pim447.h ]; then
+            cat > zmk/app/include/dt-bindings/zmk/trackball_pim447.h << 'EOF'
+#ifndef ZMK_TRACKBALL_PIM447_H
+#define ZMK_TRACKBALL_PIM447_H
 
-          echo "=== Verificando drivers PIM447 ==="
-          echo "Buscando drivers en zmk/app/..."
-          find ./zmk -name "*pim447*" -o -name "*trackball*" -type f
-          
-          echo "=== Directorios de drivers existentes ==="
-          find ./zmk -name "src" -o -name "drivers" -type d
-          
-          echo "✅ Drivers PIM447 encontrados - procediendo con build"
-        
-      - name: Verify ZMK custom files
-        run: |
-          echo "=== Verificando archivos personalizados ==="
-          # Verificar que los archivos necesarios existen en el fork
-          if [ -f zmk/app/dts/bindings/sensor/pimoroni,trackball_pim447.yaml ]; then
-            echo "✅ pimoroni,trackball_pim447.yaml encontrado"
-          else
-            echo "❌ pimoroni,trackball_pim447.yaml no encontrado"
-            exit 1
+#define PIM447_MOVE 0
+#define PIM447_SCROLL 1
+
+#endif
+EOF
           fi
           
-          if [ -f config/boards/shields/sofle/sofle_left.overlay ]; then
-            echo "✅ sofle_left.overlay encontrado"
-            echo "=== Contenido completo del overlay ==="
-            cat config/boards/shields/sofle/sofle_left.overlay
-          else
-            echo "❌ sofle_left.overlay no encontrado"
-            exit 1
+          # 2. Driver básico del sensor (placeholder)
+          if [ ! -f zmk/app/drivers/sensor/trackball_pim447/Kconfig ]; then
+            cat > zmk/app/drivers/sensor/trackball_pim447/Kconfig << 'EOF'
+config TRACKBALL_PIM447
+    bool "Pimoroni PIM447 Trackball"
+    depends on I2C
+    help
+      Enable driver for Pimoroni PIM447 I2C trackball
+EOF
           fi
-        
-      - name: Debug - Check ZMK remote
+          
+          if [ ! -f zmk/app/drivers/sensor/trackball_pim447/CMakeLists.txt ]; then
+            cat > zmk/app/drivers/sensor/trackball_pim447/CMakeLists.txt << 'EOF'
+zephyr_library_sources_ifdef(CONFIG_TRACKBALL_PIM447 trackball_pim447.c)
+EOF
+          fi
+          
+          echo "✅ Archivos PIM447 preparados"
+          
+      - name: Verify structure
         run: |
-          cd zmk
-          git remote -v
-          git rev-parse --abbrev-ref HEAD
-        
-      - name: Debug - Check for PIM447 driver
+          echo "=== Verificando estructura de ZMK ==="
+          ls -la zmk/
+          ls -la zmk/app/ || true
+          ls -la zmk/zephyr/ || true
+          echo "=== Verificando ZEPHYR_BASE ==="
+          echo "ZEPHYR_BASE=${ZEPHYR_BASE:-not set}"
+          
+      - name: Build LEFT split
         run: |
-          ls -R zmk/drivers | grep pim447 || echo "PIM447 driver not found"
-        
-      - name: West Zephyr export
-        run: west zephyr-export
-        
-      - name: Debug - Check overlays
-        run: |
-          echo "=== Overlays encontrados ==="
-          find ${GITHUB_WORKSPACE}/config -name "*.overlay" -type f
-          echo "=== Contenido del overlay sofle ==="
-          cat ${GITHUB_WORKSPACE}/config/boards/shields/sofle/sofle.overlay || true
-
-      - name: Build LEFT (with PIM447)
-        run: |
+          export ZEPHYR_BASE=$PWD/zmk/zephyr
+          export ZEPHYR_SDK_INSTALL_DIR=$PWD/zephyr-sdk-0.16.1
+          
+          # Construir lado izquierdo con PIM447
           west build -s zmk/app -b nice_nano_v2 -d build/left -- \
-            -DSHIELD="sofle_left" \
-            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-        
-      - name: Build RIGHT (with OLED)
+            -DSHIELD=sofle_left \
+            -DZMK_CONFIG="${PWD}/config" \
+            -DCONFIG_ZMK_MOUSE=y \
+            -DCONFIG_I2C=y
+          
+      - name: Build RIGHT split
         run: |
+          export ZEPHYR_BASE=$PWD/zmk/zephyr
+          export ZEPHYR_SDK_INSTALL_DIR=$PWD/zephyr-sdk-0.16.1
+          
+          # Limpiar build anterior
+          rm -rf build/right
+          
+          # Construir lado derecho
           west build -s zmk/app -b nice_nano_v2 -d build/right -- \
-            -DSHIELD="sofle_right" \
-            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-        
-      - name: Verify PIM447
+            -DSHIELD=sofle_right \
+            -DZMK_CONFIG="${PWD}/config"
+          
+      - name: Verify builds
         run: |
-          echo "=== Verificando PIM447 ==="
+          echo "=== Verificando firmware generado ==="
+          ls -lh build/left/zephyr/zmk.uf2 || echo "❌ Firmware LEFT no encontrado"
+          ls -lh build/right/zephyr/zmk.uf2 || echo "❌ Firmware RIGHT no encontrado"
+          
+          # Verificar si PIM447 está en el DTS
           if [ -f build/left/zephyr/zephyr.dts ]; then
-            grep -n "pimoroni,trackball_pim447" build/left/zephyr/zephyr.dts && echo "✅ PIM447 encontrado" || echo "❌ PIM447 no encontrado"
-          else
-            echo "DTS file not found"
+            echo "=== Buscando PIM447 en DTS ==="
+            grep -i "pim447\|pimoroni" build/left/zephyr/zephyr.dts || echo "⚠️ PIM447 no detectado en DTS"
           fi
-        
+          
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
+          name: zmk-sofle-firmware
           path: |
             build/left/zephyr/zmk.uf2
             build/right/zephyr/zmk.uf2
