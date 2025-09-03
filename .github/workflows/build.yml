@@ -20,6 +20,7 @@ jobs:
             make gcc gcc-multilib g++-multilib libsdl2-dev
           
           pip3 install west
+          pip3 install -r ${GITHUB_WORKSPACE}/zephyr/scripts/requirements.txt
           
       - name: Setup Zephyr environment
         run: |
