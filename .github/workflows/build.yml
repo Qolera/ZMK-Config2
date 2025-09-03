@@ -56,20 +56,20 @@ jobs:
           # Crear estructura de directorios necesaria
           mkdir -p zmk/app/dts/bindings/sensor
           mkdir -p zmk/app/include/dt-bindings/zmk
-          mkdir -p zmk/app/drivers/sensor/trackball_pim447
+          mkdir -p zmk/app/drivers/sensor/pim447_trackball
           mkdir -p zmk/app/src/behaviors
           mkdir -p zmk/app/include/zmk
           
           # Copiar binding YAML
-          cp config/pimoroni,trackball_pim447.yaml zmk/app/dts/bindings/sensor/
+          cp config/pimoroni,pim447_trackball.yaml zmk/app/dts/bindings/sensor/
           
           # Crear archivos mínimos necesarios si no existen en el fork
           
           # 1. Header file para las constantes
-          if [ ! -f zmk/app/include/dt-bindings/zmk/trackball_pim447.h ]; then
-            cat > zmk/app/include/dt-bindings/zmk/trackball_pim447.h << 'EOF'
-#ifndef ZMK_TRACKBALL_PIM447_H
-#define ZMK_TRACKBALL_PIM447_H
+          if [ ! -f zmk/app/include/dt-bindings/zmk/pim447_trackball.h ]; then
+            cat > zmk/app/include/dt-bindings/zmk/pim447_trackball.h << 'EOF'
+#ifndef ZMK_PIM447_TRACKBALL_H
+#define ZMK_PIM447_TRACKBALL_H
 
 #define PIM447_MOVE 0
 #define PIM447_SCROLL 1
@@ -79,9 +79,9 @@ EOF
           fi
           
           # 2. Driver básico del sensor (placeholder)
-          if [ ! -f zmk/app/drivers/sensor/trackball_pim447/Kconfig ]; then
-            cat > zmk/app/drivers/sensor/trackball_pim447/Kconfig << 'EOF'
-config TRACKBALL_PIM447
+          if [ ! -f zmk/app/drivers/sensor/pim447_trackball/Kconfig ]; then
+            cat > zmk/app/drivers/sensor/pim447_trackball/Kconfig << 'EOF'
+config PIM447_TRACKBALL
     bool "Pimoroni PIM447 Trackball"
     depends on I2C
     help
@@ -89,9 +89,9 @@ config TRACKBALL_PIM447
 EOF
           fi
           
-          if [ ! -f zmk/app/drivers/sensor/trackball_pim447/CMakeLists.txt ]; then
-            cat > zmk/app/drivers/sensor/trackball_pim447/CMakeLists.txt << 'EOF'
-zephyr_library_sources_ifdef(CONFIG_TRACKBALL_PIM447 trackball_pim447.c)
+          if [ ! -f zmk/app/drivers/sensor/pim447_trackball/CMakeLists.txt ]; then
+            cat > zmk/app/drivers/sensor/pim447_trackball/CMakeLists.txt << 'EOF'
+zephyr_library_sources_ifdef(CONFIG_PIM447_TRACKBALL pim447_trackball.c)
 EOF
           fi
           
@@ -140,7 +140,7 @@ EOF
           # Verificar si PIM447 está en el DTS
           if [ -f build/left/zephyr/zephyr.dts ]; then
             echo "=== Buscando PIM447 en DTS ==="
-            grep -i "pim447\|pimoroni" build/left/zephyr/zephyr.dts || echo "⚠️ PIM447 no detectado en DTS"
+            grep -i "pim447_trackball\|pimoroni,pim447_trackball" build/left/zephyr/zephyr.dts || echo "⚠️ PIM447 no detectado en DTS"
           fi
           
       - name: Upload firmware
